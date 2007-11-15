@@ -1,1 +1,14 @@
 \section{Wybór encji (obiektów) i ich atrybutów}
+
+Podstawowymi encjami w naszym projekcie są \textbf{Linia} oraz \textbf{Przystanek}. 
+Ich atrybuty opisują fizyczne odpoiwedniki, przechowując takie informacje jak \textit{numer}
+lini, jej \textit{typ} oraz \textit{opis} słowny. Przystanek jest opisnay przez atrybut: 
+\textit{nazwa} oraz \textit{ulica} - nazwa ulicy przy jakiej dany przystanek się znajduje.
+Są to obiekty reprezentujące fizyczne linie autobusowe poruszające się po kolejnych 
+obiektach jakimi są przystanki. Kolejnymi encjami są \textbf{Trasy}, które wiążą 
+daną linię z listą przystanków. Obiektami reprezentującymi godziny odjazdów autobusów
+z kolejnych przystanków są odpowiednio \textbf{Odjazdy} oraz \textbf{Przesuniecia}.
+Pierwszy obiekt przechowuje informacje o godzinach odjazdów autobusów z pętli, i jest 
+przypisany do danej lini. Odjazdy posiadają atrybuty \textit{kierunek} oraz \textit{godzina}.
+\textbf{Przesuniecia} określają przesunięcia czasowe (atrybut \textit{offset}) na przystankach 
+względem pętli i są przyporządkowane do lini oraz przystanku.
