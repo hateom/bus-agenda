@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI xmlns:UML="http://schema.omg.org/spec/UML/1.3" verified="false" timestamp="2007-11-15T02:07:33" xmi.version="1.2" >
+<XMI xmlns:UML="http://schema.omg.org/spec/UML/1.3" verified="false" timestamp="2007-11-16T00:20:27" xmi.version="1.2" >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
@@ -13,6 +13,9 @@
    <UML:Namespace.ownedElement>
     <UML:Stereotype isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="folder" isRoot="false" isAbstract="false" name="folder" />
     <UML:Stereotype isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="datatype" isRoot="false" isAbstract="false" name="datatype" />
+    <UML:Stereotype isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="g" isRoot="false" isAbstract="false" name="g" />
+    <UML:Stereotype isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="enum" isRoot="false" isAbstract="false" name="enum" />
+    <UML:Stereotype isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="0" isRoot="false" isAbstract="false" name="0" />
     <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Logical View" isRoot="false" isAbstract="false" name="Logical View" >
      <UML:Namespace.ownedElement>
       <UML:Package stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="Datatypes" isRoot="false" isAbstract="false" name="Datatypes" >
@@ -38,33 +41,51 @@
         <messages/>
         <associations/>
        </diagram>
-       <diagram snapgrid="0" showattsig="1" fillcolor="#ffffc0" linewidth="0" zoom="100" showgrid="0" showopsig="1" usefillcolor="1" snapx="10" canvaswidth="1008" snapy="10" showatts="1" xmi.id="Y4hN1l8qztEU" documentation="" type="5" showops="1" showpackage="0" name="diagram stanu" localid="" showstereotype="0" showscope="1" snapcsgrid="0" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="#ff0000" canvasheight="782" >
+       <diagram snapgrid="0" showattsig="1" fillcolor="#ffffc0" linewidth="0" zoom="100" showgrid="0" showopsig="1" usefillcolor="1" snapx="10" canvaswidth="1114" snapy="10" showatts="1" xmi.id="Y4hN1l8qztEU" documentation="" type="5" showops="1" showpackage="0" name="diagram stanu" localid="" showstereotype="0" showscope="1" snapcsgrid="0" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="#ff0000" canvasheight="767" >
         <widgets>
-         <statewidget statetype="1" statename="Wejście" usesdiagramfillcolor="1" width="70" x="119" fillcolor="none" y="14" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="x1rh9YDCDaDy" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+         <statewidget statetype="1" statename="Wejście" usesdiagramfillcolor="1" width="70" x="348" fillcolor="none" y="21" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="x1rh9YDCDaDy" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
           <Activities/>
          </statewidget>
-         <statewidget statetype="1" statename="Użytkownik" usesdiagramfillcolor="1" width="100" x="26" fillcolor="none" y="88" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="yZGSw204uNJ9" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+         <statewidget statetype="1" statename="Użytkownik" usesdiagramfillcolor="1" width="100" x="64" fillcolor="none" y="82" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="yZGSw204uNJ9" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
           <Activities/>
          </statewidget>
-         <statewidget statetype="1" statename="Administrator" usesdiagramfillcolor="1" width="116" x="440" fillcolor="none" y="67" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="V1TqGQr85yeI" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+         <statewidget statetype="1" statename="Administrator" usesdiagramfillcolor="1" width="116" x="652" fillcolor="none" y="98" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="V1TqGQr85yeI" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
           <Activities/>
          </statewidget>
-         <statewidget statetype="1" statename="Przeszukiwanie bazy" usesdiagramfillcolor="1" width="170" x="4" fillcolor="none" y="173" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="0cA5WXOd2O6s" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+         <statewidget statetype="1" statename="Szukaj" usesdiagramfillcolor="0" width="62" x="28" fillcolor="#ffffc0" y="170" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="0cA5WXOd2O6s" documentation="" usesdiagramusefillcolor="0" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="#ff0000" >
           <Activities/>
          </statewidget>
-         <statewidget statetype="1" statename="Dodawanie linii" usesdiagramfillcolor="1" width="127" x="264" fillcolor="none" y="168" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="htpT5WZ4k1m2" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+         <statewidget statetype="1" statename="Dodawanie linii" usesdiagramfillcolor="1" width="127" x="476" fillcolor="none" y="199" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="htpT5WZ4k1m2" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
           <Activities/>
          </statewidget>
-         <statewidget statetype="1" statename="Dodawanie przystanku" usesdiagramfillcolor="1" width="187" x="413" fillcolor="none" y="165" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="5eNlgkwDUmme" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+         <statewidget statetype="1" statename="Dodawanie przystanku" usesdiagramfillcolor="1" width="187" x="625" fillcolor="none" y="196" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="5eNlgkwDUmme" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
           <Activities/>
          </statewidget>
-         <statewidget statetype="1" statename="Edycja Linii" usesdiagramfillcolor="1" width="98" x="621" fillcolor="none" y="165" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="g9R6Dw4tntKq" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+         <statewidget statetype="1" statename="Edycja Linii" usesdiagramfillcolor="1" width="98" x="833" fillcolor="none" y="196" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="g9R6Dw4tntKq" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
           <Activities/>
          </statewidget>
-         <statewidget statetype="1" statename="Edycja Przystanku" usesdiagramfillcolor="1" width="153" x="742" fillcolor="none" y="165" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="Nsu8tfAxJVg0" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+         <statewidget statetype="1" statename="Edycja Przystanku" usesdiagramfillcolor="1" width="153" x="957" fillcolor="none" y="194" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="Nsu8tfAxJVg0" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
           <Activities/>
          </statewidget>
-         <statewidget statetype="2" statename="State" usesdiagramfillcolor="1" width="10" x="78" fillcolor="none" y="256" linewidth="none" height="10" usefillcolor="1" isinstance="0" xmi.id="Jg7ARyUILMAT" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+         <statewidget statetype="1" statename="Linii" usesdiagramfillcolor="1" width="41" x="0" fillcolor="none" y="246" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="KuPLG3TgsoLm" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <Activities/>
+         </statewidget>
+         <statewidget statetype="1" statename="Przystanków" usesdiagramfillcolor="1" width="110" x="64" fillcolor="none" y="249" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="7I3L6cn86mAy" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <Activities/>
+         </statewidget>
+         <statewidget statetype="1" statename="Połączeń" usesdiagramfillcolor="1" width="78" x="194" fillcolor="none" y="248" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="cluX4SCMKafY" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <Activities/>
+         </statewidget>
+         <statewidget statetype="1" statename="Rozkład jazdy wybranej linii" usesdiagramfillcolor="0" width="228" x="7" fillcolor="#ffffc0" y="380" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="0zEBJYlz7O8K" documentation="" usesdiagramusefillcolor="0" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="#ff0000" >
+          <Activities/>
+         </statewidget>
+         <statewidget statetype="2" statename="State" usesdiagramfillcolor="1" width="10" x="114" fillcolor="none" y="489" linewidth="none" height="10" usefillcolor="1" isinstance="0" xmi.id="DXGaCQ3rWKgX" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <Activities/>
+         </statewidget>
+         <statewidget statetype="1" statename="Zmiana rozkładu" usesdiagramfillcolor="1" width="138" x="730" fillcolor="none" y="310" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="CCWvovMhsFhB" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
+          <Activities/>
+         </statewidget>
+         <statewidget statetype="1" statename="Zmiana listy przystanków" usesdiagramfillcolor="1" width="207" x="885" fillcolor="none" y="309" linewidth="none" height="29" usefillcolor="1" isinstance="0" xmi.id="wIrYffO3Q7ms" documentation="" usesdiagramusefillcolor="1" font="Verdana,12,-1,5,50,0,0,0,0,0" linecolor="none" >
           <Activities/>
          </statewidget>
         </widgets>
@@ -72,50 +93,98 @@
         <associations>
          <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="yZGSw204uNJ9" widgetaid="x1rh9YDCDaDy" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
           <linepath>
-           <startpoint startx="154" starty="43" />
-           <endpoint endx="76" endy="88" />
+           <startpoint startx="348" starty="35" />
+           <endpoint endx="164" endy="96" />
           </linepath>
          </assocwidget>
          <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="0cA5WXOd2O6s" widgetaid="yZGSw204uNJ9" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
           <linepath>
-           <startpoint startx="76" starty="117" />
-           <endpoint endx="89" endy="173" />
+           <startpoint startx="114" starty="111" />
+           <endpoint endx="59" endy="170" />
           </linepath>
          </assocwidget>
          <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="V1TqGQr85yeI" widgetaid="x1rh9YDCDaDy" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
           <linepath>
-           <startpoint startx="189" starty="28" />
-           <endpoint endx="440" endy="81" />
+           <startpoint startx="418" starty="35" />
+           <endpoint endx="652" endy="112" />
           </linepath>
          </assocwidget>
          <assocwidget totalcounta="5" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="htpT5WZ4k1m2" widgetaid="V1TqGQr85yeI" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
           <linepath>
-           <startpoint startx="463" starty="96" />
-           <endpoint endx="327" endy="168" />
+           <startpoint startx="675" starty="127" />
+           <endpoint endx="539" endy="199" />
           </linepath>
          </assocwidget>
          <assocwidget totalcounta="5" indexa="2" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="5eNlgkwDUmme" widgetaid="V1TqGQr85yeI" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
           <linepath>
-           <startpoint startx="486" starty="96" />
-           <endpoint endx="506" endy="165" />
+           <startpoint startx="698" starty="127" />
+           <endpoint endx="718" endy="196" />
           </linepath>
          </assocwidget>
          <assocwidget totalcounta="5" indexa="3" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="g9R6Dw4tntKq" widgetaid="V1TqGQr85yeI" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
           <linepath>
-           <startpoint startx="509" starty="96" />
-           <endpoint endx="670" endy="165" />
+           <startpoint startx="721" starty="127" />
+           <endpoint endx="882" endy="196" />
           </linepath>
          </assocwidget>
          <assocwidget totalcounta="5" indexa="4" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="Nsu8tfAxJVg0" widgetaid="V1TqGQr85yeI" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
           <linepath>
-           <startpoint startx="532" starty="96" />
-           <endpoint endx="818" endy="165" />
+           <startpoint startx="744" starty="127" />
+           <endpoint endx="1033" endy="194" />
           </linepath>
          </assocwidget>
-         <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="Jg7ARyUILMAT" widgetaid="0cA5WXOd2O6s" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+         <assocwidget totalcounta="3" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="KuPLG3TgsoLm" widgetaid="0cA5WXOd2O6s" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
           <linepath>
-           <startpoint startx="89" starty="202" />
-           <endpoint endx="83" endy="256" />
+           <startpoint startx="48" starty="199" />
+           <endpoint endx="20" endy="246" />
+          </linepath>
+         </assocwidget>
+         <assocwidget totalcounta="3" indexa="2" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="7I3L6cn86mAy" widgetaid="0cA5WXOd2O6s" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+          <linepath>
+           <startpoint startx="69" starty="199" />
+           <endpoint endx="119" endy="249" />
+          </linepath>
+         </assocwidget>
+         <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="cluX4SCMKafY" widgetaid="0cA5WXOd2O6s" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+          <linepath>
+           <startpoint startx="90" starty="184" />
+           <endpoint endx="233" endy="248" />
+          </linepath>
+         </assocwidget>
+         <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="4" indexb="2" linewidth="none" widgetbid="0zEBJYlz7O8K" widgetaid="7I3L6cn86mAy" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+          <linepath>
+           <startpoint startx="119" starty="278" />
+           <endpoint endx="121" endy="380" />
+          </linepath>
+         </assocwidget>
+         <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="4" indexb="1" linewidth="none" widgetbid="0zEBJYlz7O8K" widgetaid="KuPLG3TgsoLm" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+          <linepath>
+           <startpoint startx="20" starty="275" />
+           <endpoint endx="64" endy="380" />
+          </linepath>
+         </assocwidget>
+         <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="4" indexb="3" linewidth="none" widgetbid="0zEBJYlz7O8K" widgetaid="cluX4SCMKafY" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+          <linepath>
+           <startpoint startx="233" starty="277" />
+           <endpoint endx="178" endy="380" />
+          </linepath>
+         </assocwidget>
+         <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="DXGaCQ3rWKgX" widgetaid="0zEBJYlz7O8K" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+          <linepath>
+           <startpoint startx="121" starty="409" />
+           <endpoint endx="119" endy="489" />
+          </linepath>
+         </assocwidget>
+         <assocwidget totalcounta="3" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="CCWvovMhsFhB" widgetaid="g9R6Dw4tntKq" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+          <linepath>
+           <startpoint startx="865" starty="225" />
+           <endpoint endx="799" endy="310" />
+          </linepath>
+         </assocwidget>
+         <assocwidget totalcounta="3" indexa="2" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="wIrYffO3Q7ms" widgetaid="g9R6Dw4tntKq" roleBdoc="" documentation="" roleAdoc="" type="514" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+          <linepath>
+           <startpoint startx="898" starty="225" />
+           <endpoint endx="988" endy="309" />
           </linepath>
          </assocwidget>
         </associations>
@@ -139,30 +208,30 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello" >
-  <docsettings viewid="Y4hN1l8qztEU" documentation="" uniqueid="4kIRlOBohpvp" />
+  <docsettings viewid="Y4hN1l8qztEU" documentation="" uniqueid="wIrYffO3Q7ms" />
   <listview>
    <listitem open="1" type="800" label="Perspektywy" >
-    <listitem open="1" type="801" id="Logical View" >
-     <listitem open="0" type="807" id="rzQvOCuchmHO" label="diagram klasy" />
-     <listitem open="0" type="808" id="Y4hN1l8qztEU" label="diagram stanu" />
-     <listitem open="0" type="830" id="Datatypes" >
-      <listitem open="1" type="829" id="omZD8v5Go0XB" />
-      <listitem open="1" type="829" id="HFZ9sFv7bvEs" />
-      <listitem open="1" type="829" id="8i9heLXQ76bG" />
-      <listitem open="1" type="829" id="3250OwOfBvp3" />
-      <listitem open="1" type="829" id="7HsZjPMOu7uv" />
-      <listitem open="1" type="829" id="w258ws92YGkC" />
-      <listitem open="1" type="829" id="0gUoe1xg30gR" />
-      <listitem open="1" type="829" id="KlT9DZbgclAg" />
-      <listitem open="1" type="829" id="cHajMBxMpR8U" />
-      <listitem open="1" type="829" id="pGnNUVa6nAo7" />
-      <listitem open="1" type="829" id="T5AU4ow0rz6l" />
-     </listitem>
-    </listitem>
-    <listitem open="1" type="802" id="Use Case View" />
-    <listitem open="1" type="821" id="Component View" />
-    <listitem open="1" type="827" id="Deployment View" />
     <listitem open="1" type="836" id="Entity Relationship Model" />
+    <listitem open="1" type="827" id="Deployment View" />
+    <listitem open="1" type="821" id="Component View" />
+    <listitem open="1" type="802" id="Use Case View" />
+    <listitem open="1" type="801" id="Logical View" >
+     <listitem open="0" type="830" id="Datatypes" >
+      <listitem open="1" type="829" id="T5AU4ow0rz6l" />
+      <listitem open="1" type="829" id="pGnNUVa6nAo7" />
+      <listitem open="1" type="829" id="cHajMBxMpR8U" />
+      <listitem open="1" type="829" id="KlT9DZbgclAg" />
+      <listitem open="1" type="829" id="0gUoe1xg30gR" />
+      <listitem open="1" type="829" id="w258ws92YGkC" />
+      <listitem open="1" type="829" id="7HsZjPMOu7uv" />
+      <listitem open="1" type="829" id="3250OwOfBvp3" />
+      <listitem open="1" type="829" id="8i9heLXQ76bG" />
+      <listitem open="1" type="829" id="HFZ9sFv7bvEs" />
+      <listitem open="1" type="829" id="omZD8v5Go0XB" />
+     </listitem>
+     <listitem open="0" type="808" id="Y4hN1l8qztEU" label="diagram stanu" />
+     <listitem open="0" type="807" id="rzQvOCuchmHO" label="diagram klasy" />
+    </listitem>
    </listitem>
   </listview>
   <codegeneration>
