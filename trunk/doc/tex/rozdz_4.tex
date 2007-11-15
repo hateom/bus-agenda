@@ -4,16 +4,21 @@ DFD i STD oraz hierarchii funkcji.}
 W projekcie przewidujemy dwa główne scenariusze użytkowania : użytkownik i administrator.\\
 Użytkownik będzie mógł:
 \begin{list}{*}{}
-\item poszukiwać połączeń, przystanków, linii oraz przystanków w pobliży zadanej ulicy
-\item wyświetlać wybrany rozkład jazdy
+\item poszukiwać połączeń, w naszym wypadku dokonamy uproszczenia (poszukiwać będziemy tylko pośród linii wyjeżdżających z przystanku źródłowego i dojeżdżających do punktu docelowego), ponieważ pełne wyszukiwanie połączeń (takie jak np. na stronie MPK) 
+jest zbyt skomplikowane i nie jest możliwe za pomocą podstawowych operacji na bazie danych
+\item poszukiwać przystanków, według nazw
+\item wyświetlić dowolną linię wraz z pokazaniem listy przystanków i wyborem kierunku jazdy
+\item poszukiwać przystanków w pobliży zadanej ulicy
+\item wyświetlać wybrany rozkład jazdy (dla przystanku)
 \end{list}
 
 Administrator będzie odpowiedzialny za dodawanie, edycję oraz usuwanie danych z rozkładu tzn:
 \begin{list}{*}{}
-\item dodawać nowe przystanki, edytować i usuwać już istniejące
-\item dodawać linie, przystanek po przystanku i określać czas podróży pomiędzy przystankami,
+\item dodawać nowe przystanki, edytować i usuwać już istniejące. Dodawanie polegać będzie na określeniu nazwy przystanku oraz ulic będących w jego pobliżu.
+Usuwanie przystanku będzie możliwe jedynie pod warunkiem wprowadzenia korekty w rozkładach jazdy (tj upewnienie się, że żadna z linii nie
+jeździ przez usuwany przystanek)
+\item dodawać linie  (przystanek po przystanku) i określać czas podróży pomiędzy przystankami,
 \item usuwać linie,
-\item usuwać przystanki, pod warunkiem że przez wybrany do usunięcia przystanek nie przebiega trasa żadnej z linii,
 \item modyfikować istniejące trasy oraz generować i modyfikować rozkłady jazdy
 \end{list}
 
