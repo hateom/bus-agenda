@@ -1,3 +1,33 @@
 \section{Projektowanie operacji na danych: zdefiniowanie kwerend dla realizacji funkcji wyspecyfikowanych w projekcie}
 
+Przykładowe zapytania SQL:
+Wyświetlenie wszystkich odjazdów ze wszystkich przystanków dla trasy o ID=1 o wszystkich porach dnia (oraz pokazuje te pory). Docelowo będzie konieczne sprarsowanie takiego wyniku, aby wyświetlić go w bardziej przystępnej formie.
+\begin{verbatim}
+SELECT (SELECT pory.opis FROM pory WHERE pory.id = przesuniecia.pory_id) AS "Pora", przystanki.nazwa AS Przystanek, przesuniecia.offset + odjazdy.godzina AS Odj FROM przystanki INNER JOIN przesuniecia ON (linie_id=1 AND przystanki_id=przystanki.id) INNER JOIN odjazdy ON odjazdy.linie_id=1 ORDER BY przesuniecia.numer_kolejny ASC, przesuniecia.pory_id ASC;
+\end{verbatim}
 
+Wyświetlenie wszystkich dostępnych linii autobusowych:
+\begin{verbatim}
+SELECT linie.numer AS "Numer", linie.opis AS "Opis" FROM linie;
+\end{verbatim}
+
+
+Wyświetlenie dostępnych przystanków wraz z nazwą ulic przy której się znajdują:
+\begin{verbatim}
+SELECT przystanki.nazwa AS "Nazwa przystanku" , (SELECT ulice_d.nazwa FROM ulice_d WHERE ulice_d.id=przystanki.ulice_d_id) AS "Ulica" FROM przystanki;
+\end{verbatim}
+
+Wyświetlenie wszystkich pór dnia wraz z ich opisem
+\begin{verbatim}
+SELECT pory.opis AS "Opis", pory.rozp || ' - ' || pory.zakoncz AS "Odjazdy" FROM pory;
+\end{verbatim}
+
+
+Przykładowe dodanie nowej linii:
+\begin{verbatim}
+INSERT INTO linie VALUES (0, 194, 1, 'Stacja A- Stacja B');
+\end{verbatim}
+
+Są to oczywiście jedynie przykładowe zapytanie, pokazujące, że rozkład jazdy działa i możliwa jest jego generacja. Dodatkowo widać, że powiązania pomiędzy tabelami sa poprawne (dla przykładowych danych otrzymane wyniki są poprawne). W ostatecznej wersji zapytania te mogą wyglądać nieco inaczej choćby ze względu na konieczność ich dopasowania do wymagań GUI.
+
+Dodatkowo utworzone zostaną widoki z wygenerowanymi już rozkładami dla każdego przystanku, zależne od pory dnia. Jest to konieczne ze względu na wydajność (chcemy uniknąć przeliczania rozkładu przy każdym żądaniu).
