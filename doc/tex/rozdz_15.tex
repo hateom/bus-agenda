@@ -3,7 +3,12 @@
 Przykładowe zapytania SQL:
 Wyświetlenie wszystkich odjazdów ze wszystkich przystanków dla trasy o ID=1 o wszystkich porach dnia (oraz pokazuje te pory). Docelowo będzie konieczne sprarsowanie takiego wyniku, aby wyświetlić go w bardziej przystępnej formie.
 \begin{verbatim}
-SELECT (SELECT pory.opis FROM pory WHERE pory.id = przesuniecia.pory_id) AS "Pora", przystanki.nazwa AS Przystanek, przesuniecia.offset + odjazdy.godzina AS Odj FROM przystanki INNER JOIN przesuniecia ON (linie_id=1 AND przystanki_id=przystanki.id) INNER JOIN odjazdy ON odjazdy.linie_id=1 ORDER BY przesuniecia.numer_kolejny ASC, przesuniecia.pory_id ASC;
+SELECT (SELECT pory.opis FROM pory WHERE pory.id = przesuniecia.pory_id) AS "Pora",
+przystanki.nazwa AS Przystanek, 
+przesuniecia.offset + odjazdy.godzina AS Odj FROM przystanki 
+INNER JOIN przesuniecia ON (linie_id=1 AND przystanki_id=przystanki.id) 
+INNER JOIN odjazdy ON odjazdy.linie_id=1 ORDER BY przesuniecia.numer_kolejny ASC,
+przesuniecia.pory_id ASC;
 \end{verbatim}
 
 Wyświetlenie wszystkich dostępnych linii autobusowych:
@@ -14,12 +19,15 @@ SELECT linie.numer AS "Numer", linie.opis AS "Opis" FROM linie;
 
 Wyświetlenie dostępnych przystanków wraz z nazwą ulic przy której się znajdują:
 \begin{verbatim}
-SELECT przystanki.nazwa AS "Nazwa przystanku" , (SELECT ulice_d.nazwa FROM ulice_d WHERE ulice_d.id=przystanki.ulice_d_id) AS "Ulica" FROM przystanki;
+SELECT przystanki.nazwa AS "Nazwa przystanku" , 
+(SELECT ulice_d.nazwa FROM ulice_d WHERE ulice_d.id=przystanki.ulice_d_id) 
+AS "Ulica" FROM przystanki;
 \end{verbatim}
 
 Wyświetlenie wszystkich pór dnia wraz z ich opisem
 \begin{verbatim}
-SELECT pory.opis AS "Opis", pory.rozp || ' - ' || pory.zakoncz AS "Odjazdy" FROM pory;
+SELECT pory.opis AS "Opis", pory.rozp || ' - ' ||
+ pory.zakoncz AS "Odjazdy" FROM pory;
 \end{verbatim}
 
 
