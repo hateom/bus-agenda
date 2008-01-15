@@ -1,4 +1,6 @@
 <?php 
+    include_once( 'config.php' );
+
 	session_start(); 
 	if( isset( $_GET['logout'] ) ) { 
 		session_destroy(); 
@@ -7,7 +9,7 @@
 
 	/* password sent */
 	if( isset( $_POST['passwd'] ) ) {
-        if( $_POST['passwd'] == 'dupa' ) {
+        if( md5( $_POST['passwd'] ) === $root_pwd ) {
     		$_SESSION['loggedin'] = '1';
         } else {
             $error = "Login failed!";
