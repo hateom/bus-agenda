@@ -50,16 +50,29 @@
     $smarty->display( 'panel.tpl' );
 
 
-    if( !isset( $_GET['i'] ) ) {
+    if( !isset( $_GET['i'] ) && !isset( $_GET['a'] ) ) {
         $smarty->display( 'intro.tpl' );
-    } else {
+    } else if( isset( $_GET['i']) ) {
         $i = $_GET['i'];
         if( $i == 'conn' ) {
-
+            $smarty->display( 'connections.tpl' );
         } else if( $i == 'line' ) {
-
+            $smarty->display( 'lines.tpl' );
         } else if( $i == 'bs' ) {
-
+            $smarty->display( 'stops.tpl' );
+        }
+    } else if( isset( $_GET['a'] )) {
+        if( isset( $_SESSION['loggedin'] ) && $_SESSION['loggedin'] == 1 ) {
+            $a = $_GET['a'];            
+            if( $a == 'bs' ) {
+                $smarty->display( 'manage_bs.tpl' );
+            } else if( $a == 'line' ) {
+                $smarty->display( 'manage_l.tpl' );
+            } else if( $a == 'tt' ) {
+                $smarty->display( 'manage_tt.tpl' );
+            }
+        } else {
+            $smarty->display( 'intro.tpl' );
         }
     }
 

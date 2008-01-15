@@ -1,3 +1,3 @@
 <div id="logout">
-    Administration mode (<a href="./?logout">Log out</a>)
+    Tryb administratora (<a href="./?logout">wyloguj</a>)
 </div>
