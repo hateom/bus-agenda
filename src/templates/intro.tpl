@@ -1,5 +1,6 @@
 <div class="content">
     <p>
-        Welcome to the Agenda Bus website. Use menu above to navigate. Have phun.
+        Witaj na stronie projektu Bus Agenda. Użyj menu u góry do poruszania się o stronie. 
+        Życzymy miłego przeglądania!
     </p>
 </div>

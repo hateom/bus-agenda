@@ -1,3 +1,3 @@
 <div id="foot">
-    All rights reserved to Tomasz Huczek &amp; Andrzej Jasiński
+    Wszelkie prawa zastrzeżone dla: Tomasz Huczek &amp; Andrzej Jasiński
 </div>
