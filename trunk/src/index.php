@@ -57,11 +57,8 @@
     $smarty->display( 'panel.tpl' );
 
 
-    /* Empty page - show intors  */
-    if( !isset( $_GET['i'] ) && !isset( $_GET['a'] ) ) {
-        $smarty->display( 'intro.tpl' );
     /* page selected */
-    } else if( isset( $_GET['i']) ) {
+     if( isset( $_GET['i']) ) {
         $i = $_GET['i'];
         /* connections */
         if( $i == 'conn' ) {
@@ -138,6 +135,29 @@
             /* no admin option selected - show intr0 */
             $smarty->display( 'intro.tpl' );
         }
+    } else if( isset($_GET['l']) ) {
+        $l = $_GET['l'];
+        $db = new dbdriver();
+        if( !$db->read_route( $l )) {
+            $error = "Nie można odczytać trasy!";
+        } else {
+            $bs = array();
+            while( $row = $db->next_route()) {
+                $route[] = $row;
+            }
+        }
+        $db->free_result();
+
+        if( isset( $error ) ) {
+            $smarty->assign( "error_msg", $error );
+            $smarty->display( 'error.tpl' );
+        }
+
+        $smarty->assign( 'line', $l );
+        $smarty->assign( 'route', $route );
+        $smarty->display( 'route.tpl' );
+    } else {
+        $smarty->display( 'intro.tpl' );
     }
 
 
