@@ -18,7 +18,7 @@ class dbdriver
 		global $db_host;
 		global $db_user;
 		global $db_pass;
-		global $db_table;
+		global $db_name;
 		
 		if( $this->link != 0 ) return TRUE;
 		
@@ -37,6 +37,78 @@ class dbdriver
 		pg_close( $this->link );
 		$this->link = 0;
 	}
+
+    function test()
+    {
+		if( !$this->connect_db() ) return FALSE;
+
+        $sql    = 'SELECT * FROM "public"."linie"';
+        $result = pg_query( $this->link, $sql );
+		
+        return $result;
+    }
+
+    function read_lines()
+    {
+		if( !$this->connect_db() ) return FALSE;
+
+        $sql    = 'SELECT * FROM "public"."linie"';
+        $this->result = pg_query( $this->link, $sql );
+		
+        if( !$this->result ) return FALSE;
+
+        return TRUE;
+    }
+
+    function next_line()
+    {
+        if( !$this->result ) return FALSE;
+
+        $row = pg_fetch_assoc( $this->result );
+        return $row;
+    }
+
+    function read_bs()
+    {
+		if( !$this->connect_db() ) return FALSE;
+
+        $sql    = 'SELECT * FROM "public"."przystanki"';
+        $this->result = pg_query( $this->link, $sql );
+		
+        if( !$this->result ) return FALSE;
+
+        return TRUE;
+    }
+
+    function next_bs()
+    {
+        if( !$this->result ) return FALSE;
+
+        $row = pg_fetch_assoc( $this->result );
+        return $row;
+    }
+
+    function read_streets()
+    {
+		if( !$this->connect_db() ) return FALSE;
+
+        $sql    = 'SELECT * FROM "public"."ulice_d"';
+        $this->result = pg_query( $this->link, $sql );
+		
+        if( !$this->result ) return FALSE;
+
+        return TRUE;
+    }
+
+    function next_street()
+    {
+        if( !$this->result ) return FALSE;
+
+        $row = pg_fetch_assoc( $this->result );
+        return $row;
+    }
+
+
 /*
 	function foo()
 	{
