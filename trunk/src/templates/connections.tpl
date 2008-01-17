@@ -17,6 +17,7 @@
 {/foreach}
                 </select>
                 </li>
+                <li><label for="time">O godzinie: </label><input type="text" name="time" /></li>
                 <li><input id="search_btn" type="submit" value="Search" /></li>
             </ul>
         </form>
