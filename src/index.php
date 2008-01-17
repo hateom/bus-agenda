@@ -65,6 +65,23 @@
         $i = $_GET['i'];
         /* connections */
         if( $i == 'conn' ) {
+            $db = new dbdriver();
+            if( !$db->read_bs()) {
+                $error = "Nie można odczytać przystanku!";
+            } else {
+                $bs = array();
+                while( $row = $db->next_bs()) {
+                    $bs[] = $row;
+                }
+            }
+            $db->free_result();
+
+            if( isset( $error ) ) {
+                $smarty->assign( "error_msg", $error );
+                $smarty->display( 'error.tpl' );
+            }
+
+            $smarty->assign( 'bs', $bs );
             $smarty->display( 'connections.tpl' );
         /* lines */
         } else if( $i == 'line' ) {
