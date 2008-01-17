@@ -3,8 +3,8 @@
         Wybierz linię:
     </p>
     <ul class="lines">
-        <li><a href="./?l=">192</a></li>
-        <li><a href="./?l=">134</a></li>
-        <li><a href="./?l=">215</a></li>
+{foreach from=$lines item=foo}
+        <li><a href="./?l={$foo.numer}">{$foo.numer}</a></li>
+{/foreach}
     </ul>
 </div>
