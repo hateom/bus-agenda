@@ -48,6 +48,26 @@ class dbdriver
         return $result;
     }
 
+    	function read_route($line)
+	{
+		if( !$this->connect_db() ) return FALSE;
+
+        $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line;
+        $this->result = pg_query( $this->link, $sql );
+		
+        if( !$this->result ) return FALSE;
+
+        return TRUE;
+	}
+
+	function next_route()
+	{
+	        if( !$this->result ) return FALSE;
+
+        $row = pg_fetch_assoc( $this->result );
+        return $row;
+	}
+
     function read_lines()
     {
 		if( !$this->connect_db() ) return FALSE;
@@ -67,7 +87,9 @@ class dbdriver
         $row = pg_fetch_assoc( $this->result );
         return $row;
     }
-
+function get_bs_name( $bs_id ) 
+{
+}
     function read_bs()
     {
 		if( !$this->connect_db() ) return FALSE;
