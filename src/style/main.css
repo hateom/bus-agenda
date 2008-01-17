@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #eee;
+}
+
+#main {
+    width: 900px;
+    border: 1px solid #000;
+    background-color: #fcfcfc;
+}
+
+#logout {
+    display: block;
+    background-color: #000;
+    color: #fff;
+    font-family: "Arial";
+    font-size: 0.75em;
+    padding: 4px;
+    font-weight: bold;
+}
+
+#logout a, #logout a:visited, #logout a:active  {
+    color: #f77;
+    text-decoration: none;
+}
+
+#logout a:hover {
+    color: #eee;
+    text-decoration: none;
+}
+
+#login {
+    background-color: #000;
+    display: block;
+    color: #eee;
+    font-family: "Arial";
+    font-size: 0.75em;
+    padding-left: 3px;
+}
+
+#login form {
+    padding: 4px;
+}
+
+#login input {
+    color: #fff;
+    background-color: #000;
+    border: 1px solid #999;
+}
+
+#main h1
+{
+    display: block;
+    font-family: "Trebuchet MS", "Arial";
+    padding: 4px;
+    margin: 4px;
+    text-align: center;
+    font-size: 3em;
+}
+
+.error {
+    border: 3px solid #000;
+    background-color: #faa;
+    padding: 20px;
+    margin: 20px;
+    font-size: 2em;
+    color: #000;
+    font-family: "Trebuchet MS", "Arial";
+    text-align: center;
+}
+
+.error em {
+    font-size: 0.5em;
+}
+
+#panel, #admin {
+    background-color: #fff3b3;
+    padding: 3px;
+    margin: 0;
+}
+
+#panel ul, #admin ul {
+    text-align: center;
+    padding: 0;
+    margin: 5px;
+}
+
+#panel li, #admin li {
+    list-style: none;
+    display: inline;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+#panel a {
+    display: inline;
+    padding: 5px;
+    background-color: #fffae1;
+    color: #000;
+    font-family: "Trebuchet MS", "Arial";
+    text-decoration: none;
+}
+
+#admin a {
+    display: inline;
+    padding: 5px;
+    background-color: #fffae1;
+    color: #000;
+    font-family: "Trebuchet MS", "Arial";
+    text-decoration: none;
+}
+
+#panel a:hover, #admin a:hover {
+    display: inline;
+    padding: 5px;
+    background-color: #eee3b3;
+    color: #333;
+    text-decoration: none;
+    /*text-decoration: underline;*/
+}
+
+#foot {
+    background-color: #fff;
+    display: block;
+    color: #000;
+    font-family: "Arial";
+    font-size: 0.75em;
+    text-align: center;
+    padding: 4px;
+    border-top: 1px dashed #000;
+}
+
+.content {
+    background-color: #fff;
+    color: #000;
+    font-family: "Trebuchet MS", "Arial";
+    padding: 10px;
+    margin: 0;
+}
+
+.lines li a, .lines li a:visited {
+    color: #00f;
+    text-decoration: none;
+}
+
+.lines li a:hover {
+    color: #00f;
+    text-decoration: none;
+    border-bottom: 1px solid #000;
+}
+
+#find_conn {
+    border: 1px solid #999;
+    width: 300px;
+    padding: 20px;
+    padding-left: 40px;
+}
+
+#find_conn li label, #find_conn ul li input {
+    display: block;
+}
+
+#find_conn li {
+    list-style: none;
+}
+
+#find_conn input {
+    width: 200px;
+}
+
+#search_btn {
+    margin-top: 5px;
+    width: 200px;
+}
