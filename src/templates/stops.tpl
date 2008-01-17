@@ -3,8 +3,8 @@
         Wybierz przystanek:
     </p>
     <ul class="lines">
-        <li><a href="./?l=">Królewska</a></li>
-        <li><a href="./?l=">Jadwigi</a></li>
-        <li><a href="./?l=">Bohaterów Getta</a></li>
+{foreach from=$bs item=foo}
+        <li><a href="./?b={$foo.id}">{$foo.nazwa}</a></li>
+{/foreach}
     </ul>
 </div>

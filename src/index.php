@@ -25,12 +25,17 @@
 		<meta name="description" content="content" />
 		<meta name="keywords" content="Bus Agenda" />
 		<link rel="stylesheet" href="./style/main.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="./js/jquery.js"></script>
+        <script type="text/javascript" src="./js/busag.js"></script>
 	</head>
 <body>
 
 <div id="main">
 <?php
 	require_once('smarty.php');
+	require_once('dbdriver.php');
+
+    $db = new dbdriver();
 
 	/* check login */
 	if( isset( $_SESSION['loggedin'] ) && $_SESSION['loggedin'] == 1 ) {
@@ -52,34 +57,75 @@
     $smarty->display( 'panel.tpl' );
 
 
+    /* Empty page - show intors  */
     if( !isset( $_GET['i'] ) && !isset( $_GET['a'] ) ) {
         $smarty->display( 'intro.tpl' );
+    /* page selected */
     } else if( isset( $_GET['i']) ) {
         $i = $_GET['i'];
+        /* connections */
         if( $i == 'conn' ) {
             $smarty->display( 'connections.tpl' );
+        /* lines */
         } else if( $i == 'line' ) {
+            if( !$db->read_lines()) {
+                $error = "Nie można odczytać lini!";
+            } else {
+                $lines = array();
+                while( $row = $db->next_line()) {
+                    $lines[] = $row;
+                }
+            }
+            $db->free_result();
+
+            if( isset( $error ) ) {
+                $smarty->assign( "error_msg", $error );
+                $smarty->display( 'error.tpl' );
+            }
+
+            $smarty->assign( 'lines', $lines );
             $smarty->display( 'lines.tpl' );
+        /* bus stops */
         } else if( $i == 'bs' ) {
+            $db = new dbdriver();
+            if( !$db->read_bs()) {
+                $error = "Nie można odczytać przystanku!";
+            } else {
+                $bs = array();
+                while( $row = $db->next_bs()) {
+                    $bs[] = $row;
+                }
+            }
+            $db->free_result();
+
+            if( isset( $error ) ) {
+                $smarty->assign( "error_msg", $error );
+                $smarty->display( 'error.tpl' );
+            }
+
+            $smarty->assign( 'bs', $bs );
             $smarty->display( 'stops.tpl' );
         }
+    /* administrator mode*/
     } else if( isset( $_GET['a'] )) {
         if( isset( $_SESSION['loggedin'] ) && $_SESSION['loggedin'] == 1 ) {
             $a = $_GET['a'];            
+            /* managing bus stops */
             if( $a == 'bs' ) {
                 $smarty->display( 'manage_bs.tpl' );
+            /* managing lines */
             } else if( $a == 'line' ) {
                 $smarty->display( 'manage_l.tpl' );
-            } else if( $a == 'tt' ) {
-                $smarty->display( 'manage_tt.tpl' );
-            }
+            } 
         } else {
+            /* no admin option selected - show intr0 */
             $smarty->display( 'intro.tpl' );
         }
     }
 
 
     $smarty->display( 'foot.tpl' );
+    $db->release();
 ?>
 
 </div>
