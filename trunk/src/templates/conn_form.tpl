@@ -1,7 +1,7 @@
 <div class="content">
     <p>
         Znajdź połączenie:
-        <form id="form_conn">
+        <form id="form_conn" method="post" action="./?i=conn">
             <ul id="find_conn">
                 <li><label for="from">Z przystanku: </label>
                 <select name="from">
@@ -20,6 +20,7 @@
                 <li><label for="time">O godzinie: </label><input type="text" name="time" value="{$time}"/></li>
                 <li><input id="search_btn" type="submit" value="Search" /></li>
             </ul>
+            <input type="hidden" name="search" value="1" />
         </form>
     </p>
 </div>
