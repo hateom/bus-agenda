@@ -56,12 +56,31 @@
         $i = $_GET['i'];
         /* connections */
         if( $i == 'conn' ) {
+            if( isset( $_POST['search'] ) )
+            {
+                $from = $_POST['from'];
+                $to   = $_POST['to'];
+                $time = $_POST['time'];
+                
+                if( $from == $to ) 
+                {
+                    $error = "Przystanek początkowy jest taki sam jak docelowy!";
+                } else if( !preg_match( "/^\d{1,2}\:\d{2}$/i", $time ) ) {
+                    $error = "Godzina musi być w formacie HH:MM";
+                } else {
+                    $smarty->assign( 'from', $db->get_bs_name( $from ) );
+                    $smarty->assign( 'to',   $db->get_bs_name( $to ) );
+                    $smarty->assign( 'time', $time );
+                    $smarty->display( 'conn_result.tpl' );
+                }
+            }
+
             if( !($bs = read_bs( $db )) ) {
                 $error = "Nie można odczytać przytsanku!";
             } else {
                 $smarty->assign( 'bs', $bs );
                 $smarty->assign( 'time', date('G:i') );
-                $smarty->display( 'connections.tpl' );
+                $smarty->display( 'conn_form.tpl' );
             }
         /* lines */
         } else if( $i == 'line' ) {
@@ -86,10 +105,38 @@
             $a = $_GET['a'];            
             /* managing bus stops */
             if( $a == 'bs' ) {
-                $smarty->display( 'manage_bs.tpl' );
+                if( isset( $_POST['add'] ) ) {
+                    $nbs = $_POST['add_bs'];
+                    if( $nbs === "" ) {
+                        $error = "Nazwa nie może być pusta!";
+                    } else {
+                        echo "SQL INSERT = ".$nbs;
+                    }
+                }
+
+                if( !($bs = read_bs( $db )) ) {
+                    $error = "Nie można odczytać przytsanku!";
+                } else {
+                    $smarty->assign( 'bs', $bs );
+                    $smarty->display( 'manage_bs.tpl' );
+                }
             /* managing lines */
             } else if( $a == 'line' ) {
-                $smarty->display( 'manage_l.tpl' );
+                if( isset( $_POST['add'] ) ) {
+                    $nl=$_POST['add_l'];
+                    if( $nl === "" ) {
+                        $error = "Nazwa nie może być pusta!";
+                    } else {
+                        echo "SQL INSERT = ".$nl;
+                    }
+                }
+
+                if( !($lines = read_lines( $db )) ) {
+                    $error = "Nie można odczytać lini!";
+                } else {
+                    $smarty->assign( 'lines', $lines );
+                    $smarty->display( 'manage_l.tpl' );
+                }
             } 
         } else {
             /* no admin option selected - show intr0 */

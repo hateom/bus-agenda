@@ -179,3 +179,15 @@ body {
     font-family: "Trebuchet MS", "Arial";
     font-size: 1.25em;
 }
+
+#login_dom  {
+    color: #ccc;
+    font-size: 1.25em;
+    text-decoration: none;
+    padding: 3px;
+}
+
+#login_dom:hover {
+    color: #fff;
+    text-decoration: none;
+}
