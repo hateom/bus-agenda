@@ -174,3 +174,8 @@ body {
     margin-top: 5px;
     width: 200px;
 }
+
+#find_conn input, #find_conn select {
+    font-family: "Trebuchet MS", "Arial";
+    font-size: 1.25em;
+}

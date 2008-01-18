@@ -90,6 +90,15 @@ class dbdriver
 
     function get_bs_name( $bs_id ) 
     {
+        if( !$this->connect_db() ) return FALSE;
+
+        $sql    = 'SELECT nazwa FROM "public"."przystanki" WHERE "id"='.$bs_id.' LIMIT 1';
+        $this->result = pg_query( $this->link, $sql );
+        
+        if( !$this->result ) return FALSE;
+        $row = pg_fetch_assoc( $this->result );
+
+        return $row['nazwa'];
     }
 
     function read_bs()

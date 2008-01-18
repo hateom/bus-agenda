@@ -60,6 +60,7 @@
                 $error = "Nie można odczytać przytsanku!";
             } else {
                 $smarty->assign( 'bs', $bs );
+                $smarty->assign( 'time', date('G:i') );
                 $smarty->display( 'connections.tpl' );
             }
         /* lines */
