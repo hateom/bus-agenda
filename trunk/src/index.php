@@ -49,75 +49,35 @@
 	}
 
     $smarty->display( 'head.tpl' );
-
-    if( isset( $error ) ) {
-        $smarty->assign( "error_msg", $error );
-        $smarty->display( 'error.tpl' );
-    }
-
     $smarty->display( 'panel.tpl' );
-
 
     /* page selected */
      if( isset( $_GET['i']) ) {
         $i = $_GET['i'];
         /* connections */
         if( $i == 'conn' ) {
-            if( !$db->read_bs()) {
-                $error = "Nie można odczytać przystanku!";
+            if( !($bs = read_bs( $db )) ) {
+                $error = "Nie można odczytać przytsanku!";
             } else {
-                $bs = array();
-                while( $row = $db->next_bs()) {
-                    $bs[] = $row;
-                }
+                $smarty->assign( 'bs', $bs );
+                $smarty->display( 'connections.tpl' );
             }
-            $db->free_result();
-
-            if( isset( $error ) ) {
-                $smarty->assign( "error_msg", $error );
-                $smarty->display( 'error.tpl' );
-            }
-
-            $smarty->assign( 'bs', $bs );
-            $smarty->display( 'connections.tpl' );
         /* lines */
         } else if( $i == 'line' ) {
-            if( !$db->read_lines()) {
+            if( !($lines = read_lines( $db )) ) {
                 $error = "Nie można odczytać lini!";
             } else {
-                $lines = array();
-                while( $row = $db->next_line()) {
-                    $lines[] = $row;
-                }
+                $smarty->assign( 'lines', $lines );
+                $smarty->display( 'lines.tpl' );
             }
-            $db->free_result();
-
-            if( isset( $error ) ) {
-                $smarty->assign( "error_msg", $error );
-                $smarty->display( 'error.tpl' );
-            }
-
-            $smarty->assign( 'lines', $lines );
-            $smarty->display( 'lines.tpl' );
         /* bus stops */
         } else if( $i == 'bs' ) {
-            if( !$db->read_bs()) {
-                $error = "Nie można odczytać przystanku!";
+            if( !($bs = read_bs( $db )) ) {
+                $error = "Nie można odczytać przytsanku!";
             } else {
-                $bs = array();
-                while( $row = $db->next_bs()) {
-                    $bs[] = $row;
-                }
+                $smarty->assign( 'bs', $bs );
+                $smarty->display( 'stops.tpl' );
             }
-            $db->free_result();
-
-            if( isset( $error ) ) {
-                $smarty->assign( "error_msg", $error );
-                $smarty->display( 'error.tpl' );
-            }
-
-            $smarty->assign( 'bs', $bs );
-            $smarty->display( 'stops.tpl' );
         }
     /* administrator mode*/
     } else if( isset( $_GET['a'] )) {
@@ -133,27 +93,17 @@
         } else {
             /* no admin option selected - show intr0 */
             $smarty->display( 'intro.tpl' );
+            $error = "Nie masz praw do oglądania tej strony!";
         }
     } else if( isset($_GET['l']) ) {
         $l = $_GET['l'];
-        if( !$db->read_route( $l )) {
+        if( !($route = read_route( $db ) )) {
             $error = "Nie można odczytać trasy!";
         } else {
-            $bs = array();
-            while( $row = $db->next_route()) {
-                $route[] = $row;
-            }
+            $smarty->assign( 'line', $l );
+            $smarty->assign( 'route', $route );
+            $smarty->display( 'route.tpl' );
         }
-        $db->free_result();
-
-        if( isset( $error ) ) {
-            $smarty->assign( "error_msg", $error );
-            $smarty->display( 'error.tpl' );
-        }
-
-        $smarty->assign( 'line', $l );
-        $smarty->assign( 'route', $route );
-        $smarty->display( 'route.tpl' );
     } else if( isset( $_GET['b'] ) ) {
         $bs = $_GET['b'];
         $smarty->assign( 'bs', $db->get_bs_name( $bs ) );
@@ -161,7 +111,11 @@
     } else {
         $smarty->display( 'intro.tpl' );
     }
-
+    
+    if( isset( $error ) ) {
+        $smarty->assign( "error_msg", $error );
+        $smarty->display( 'error.tpl' );
+    }
 
     $smarty->display( 'foot.tpl' );
     $db->release();
