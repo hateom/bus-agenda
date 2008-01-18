@@ -34,6 +34,7 @@
 <?php
 	require_once('smarty.php');
 	require_once('dbdriver.php');
+    require_once('dbreader.php');
 
     $db = new dbdriver();
 
@@ -62,7 +63,6 @@
         $i = $_GET['i'];
         /* connections */
         if( $i == 'conn' ) {
-            $db = new dbdriver();
             if( !$db->read_bs()) {
                 $error = "Nie można odczytać przystanku!";
             } else {
@@ -101,7 +101,6 @@
             $smarty->display( 'lines.tpl' );
         /* bus stops */
         } else if( $i == 'bs' ) {
-            $db = new dbdriver();
             if( !$db->read_bs()) {
                 $error = "Nie można odczytać przystanku!";
             } else {
@@ -137,7 +136,6 @@
         }
     } else if( isset($_GET['l']) ) {
         $l = $_GET['l'];
-        $db = new dbdriver();
         if( !$db->read_route( $l )) {
             $error = "Nie można odczytać trasy!";
         } else {
@@ -156,6 +154,10 @@
         $smarty->assign( 'line', $l );
         $smarty->assign( 'route', $route );
         $smarty->display( 'route.tpl' );
+    } else if( isset( $_GET['b'] ) ) {
+        $bs = $_GET['b'];
+        $smarty->assign( 'bs', $db->get_bs_name( $bs ) );
+        $smarty->display( 'bs_info.tpl' );
     } else {
         $smarty->display( 'intro.tpl' );
     }
