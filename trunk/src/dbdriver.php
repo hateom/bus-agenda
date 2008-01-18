@@ -48,7 +48,7 @@ class dbdriver
         return $result;
     }
 
-    	function read_route($line)
+    function read_route($line)
 	{
 		if( !$this->connect_db() ) return FALSE;
 
@@ -62,7 +62,7 @@ class dbdriver
 
 	function next_route()
 	{
-	        if( !$this->result ) return FALSE;
+	    if( !$this->result ) return FALSE;
 
         $row = pg_fetch_assoc( $this->result );
         return $row;
@@ -87,9 +87,11 @@ class dbdriver
         $row = pg_fetch_assoc( $this->result );
         return $row;
     }
-function get_bs_name( $bs_id ) 
-{
-}
+
+    function get_bs_name( $bs_id ) 
+    {
+    }
+
     function read_bs()
     {
 		if( !$this->connect_db() ) return FALSE;
