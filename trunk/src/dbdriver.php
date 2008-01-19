@@ -48,11 +48,15 @@ class dbdriver
         return $result;
     }
 
-    function read_route($line)
+    function read_route($line, $reverse)
 	{
 		if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line .'ORDER BY "numer_kolejny"';
+        if( $reverse == FALSE ) {
+            $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line .'ORDER BY "numer_kolejny"';
+        } else {
+            $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line .'ORDER BY "numer_kolejny"';
+        }
         $this->result = pg_query( $this->link, $sql );
 	
         if( !$this->result ) return FALSE;
@@ -67,6 +71,19 @@ class dbdriver
         $row = pg_fetch_assoc( $this->result );
         return $row;
 	}
+
+    function read_direction( $line )
+    {
+        if( !$this->connect_db() ) return FALSE;
+
+        $sql    = '';
+        $this->result = pg_query( $this->link, $sql );
+    
+        if( !$this->result ) return FALSE;
+        $row = pg_fetch_assoc( $this->result );
+
+        return $row;
+    }
 
     function read_bs_info( $bs )
     {

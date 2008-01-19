@@ -31,7 +31,7 @@
             return $lines;
     }
 
-    function read_route( $dbd, $line )
+    function read_route( $dbd, $line, $reverse )
     {
         if( !$dbd->read_route( $line )) {
             return FALSE;
