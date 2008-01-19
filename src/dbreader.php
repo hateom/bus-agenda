@@ -45,5 +45,20 @@
 
         return $route;
     }
+
+    function read_bs_info( $dbd, $bs )
+    {
+        if( !$dbd->read_bs_info( $bs )) {
+            return FALSE;
+        } else {
+            $bs_info = array();
+            while( $row = $dbd->next_route()) {
+                $bs_info[] = $row;
+            }
+        }
+        $dbd->free_result();
+
+        return $bs_info;
+    }
 ?>
 
