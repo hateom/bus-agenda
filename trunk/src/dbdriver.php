@@ -52,7 +52,7 @@ class dbdriver
 	{
 		if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line;
+        $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line .'ORDER BY "numer_kolejny"';
         $this->result = pg_query( $this->link, $sql );
 	
         if( !$this->result ) return FALSE;
@@ -132,7 +132,7 @@ class dbdriver
     {
 		if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT * FROM "public"."linie"';
+        $sql    = 'SELECT * FROM "public"."linie" ORDER BY "numer"';
         $this->result = pg_query( $this->link, $sql );
 		
         if( !$this->result ) return FALSE;
@@ -165,7 +165,7 @@ class dbdriver
     {
 		if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT * FROM "public"."przystanki"';
+        $sql    = 'SELECT * FROM "public"."przystanki" ORDER BY "nazwa"';
         $this->result = pg_query( $this->link, $sql );
 		
         if( !$this->result ) return FALSE;
