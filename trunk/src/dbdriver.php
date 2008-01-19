@@ -55,7 +55,7 @@ class dbdriver
         if( $reverse == FALSE ) {
             $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line .'ORDER BY "numer_kolejny"';
         } else {
-            $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line .'ORDER BY "numer_kolejny"';
+            $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line .'ORDER BY "numer_kolejny" DESC';
         }
         $this->result = pg_query( $this->link, $sql );
 	
