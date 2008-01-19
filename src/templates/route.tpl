@@ -18,9 +18,11 @@
     </div>
     <div id="timetable">
         <h3>Rozkład jazdy</h3>
-        <ol>
-            <li></li>
-        </ol>
+        <ul>
+            {foreach from=$ttable item=foo}
+                <li>{$foo.odj}</li>
+            {/foreach}
+        </ul>
     </div>
     <div class="clear"></div>
 </div> 

@@ -162,7 +162,7 @@
         } else {
             if( isset( $_GET['tt'] ) ) {
                 $bs = $_GET['tt'];
-                if( !($ttable = read_ttable( $db, $l, $bs )) ) {
+                if( !($ttable = read_ttable( $db, $l, $bs, $reverse )) ) {
                     $error = "Nie można odczytać rozkładu jazdy!";
                 } else {
                     $smarty->assign( 'ttable', $ttable );
