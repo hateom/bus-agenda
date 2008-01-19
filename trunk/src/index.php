@@ -128,12 +128,13 @@
                 }
             /* managing lines */
             } else if( $a == 'line' ) {
-                if( isset( $_POST['add'] ) ) {
-                    $nl=$_POST['add_l'];
+                if( isset( $_GET['add'] ) ) {
+                    $nl=$_GET['add'];
                     if( $nl === "" ) {
                         $error = "Nazwa nie może być pusta!";
                     } else {
-                        echo "SQL INSERT = ".$nl;
+						$smarty->assign( 'line', $nl );
+                        $smarty->display( 'add_route.tpl' );
                     }
                 }
 
