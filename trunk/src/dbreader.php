@@ -75,5 +75,20 @@
 
         return $r_route;
     }
+
+    function read_ttable( $dbd, $line, $bs )
+    {
+        if( !$dbd->read_ttable( $line, $bs )) {
+            return FALSE;
+        } else {
+            $tt = array();
+            while( $row = $dbd->next_ttable()) {
+                $tt[] = $row;
+            }
+        }
+        $dbd->free_result();
+
+        return $tt;
+    }
 ?>
 
