@@ -3,7 +3,7 @@
 
     <ul class="lines">
 {foreach from=$bs_info item=foo}
-        <li><a href="">$bs_info.numer</a></li>
+        <li><a href="">{$bs_info.numer}</a></li>
 {/foreach}
     </ul>
 </div>
