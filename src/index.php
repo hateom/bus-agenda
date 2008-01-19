@@ -26,6 +26,7 @@
 		<meta name="keywords" content="Bus Agenda" />
 		<link rel="stylesheet" href="./style/main.css" type="text/css" media="screen" />
         <script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/jquery.form.js"></script>
         <script type="text/javascript" src="./js/busag.js"></script>
 	</head>
 <body>
@@ -145,7 +146,7 @@
         }
     } else if( isset($_GET['l']) ) {
         $l = $_GET['l'];
-        if( !($route = read_route( $db ) )) {
+        if( !($route = read_route( $db, $l ) )) {
             $error = "Nie można odczytać trasy!";
         } else {
             $smarty->assign( 'line', $l );

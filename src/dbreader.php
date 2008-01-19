@@ -31,9 +31,9 @@
             return $lines;
     }
 
-    function read_route( $dbd )
+    function read_route( $dbd, $line )
     {
-        if( !$dbd->read_route( $l )) {
+        if( !$dbd->read_route( $line )) {
             return FALSE;
         } else {
             $bs = array();
