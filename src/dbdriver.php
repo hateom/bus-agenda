@@ -133,7 +133,7 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT * FROM timetable_view linia_numer = '.$line .' AND przystanek_id = '.$bs .'ORDER BY odj ASC';
+        $sql    = 'SELECT * FROM timetable_view WHERE linia_numer = '.$line .' AND przystanek_id = '.$bs .'ORDER BY odj ASC';
         $this->result = pg_query( $this->link, $sql );
     
         if( !$this->result ) return FALSE;
