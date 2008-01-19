@@ -16,6 +16,7 @@
         {/foreach}
         </ul>
     </div>
+    {if $tt==1}
     <div id="timetable">
         <h3>Rozkład jazdy na przystanku {$bs}</h3>
         <ul>
@@ -24,5 +25,6 @@
             {/foreach}
         </ul>
     </div>
+    {/if}
     <div class="clear"></div>
 </div> 

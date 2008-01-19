@@ -191,10 +191,16 @@
                 $smarty->assign( 'rev', 0 );
             }
 
+			if( isset($bs) ) {
+    	        $smarty->assign( 'tt', 1 );
+	            $smarty->assign( 'bs', $db->get_bs_name($bs) );
+			} else {
+	            $smarty->assign( 'tt', 0 );
+			}
+
             $smarty->assign( 'first', $first );
             $smarty->assign( 'last', $last );
             $smarty->assign( 'line', $l );
-            $smarty->assign( 'bs', $db->get_bs_name($bs) );
             $smarty->assign( 'route', $route );
             $smarty->display( 'route.tpl' );
         }
