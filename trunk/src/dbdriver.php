@@ -186,7 +186,7 @@ class dbdriver
     {
 		if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT * FROM "public"."przystanki" ORDER BY "nazwa"';
+        $sql    = 'SELECT id, przystanki.nazwa, (SELECT ulice_d.nazwa FROM ulice_d WHERE ulice_d.id = ulica1_id) AS ulica1, (SELECT ulice_d.nazwa FROM ulice_d WHERE ulice_d.id = ulica2_id) AS ulica2 FROM "public"."przystanki" ORDER BY "nazwa";';
         $this->result = pg_query( $this->link, $sql );
 		
         if( !$this->result ) return FALSE;
