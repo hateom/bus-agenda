@@ -17,6 +17,7 @@ function val_form_login(formData, jqForm, options) {
   $("<a id='login_dom' href='#'>Panel administratora</a>").appendTo("#login");
   $("#login_dom").click(function(){
     $("#form_login").fadeIn("slow");
+    $("#pwd_in").focus();
     $(this).hide();
     return false;
   });
