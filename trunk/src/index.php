@@ -155,8 +155,13 @@
         }
     } else if( isset( $_GET['b'] ) ) {
         $bs = $_GET['b'];
-        $smarty->assign( 'bs', $db->get_bs_name( $bs ) );
-        $smarty->display( 'bs_info.tpl' );
+        if( !($bs_info = read_bs_info( $db, $bs ) )) {
+            $error = "Nie można odczytać informacji o przystanku!";
+        } else {
+            $smarty->assign( 'bs_info', $bs_info );
+            $smarty->assign( 'bs', $db->get_bs_name( $bs ) );
+            $smarty->display( 'bs_info.tpl' );
+        }
     } else {
         $smarty->display( 'intro.tpl' );
     }
