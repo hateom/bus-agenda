@@ -76,9 +76,9 @@
         return $r_route;
     }
 
-    function read_ttable( $dbd, $line, $bs )
+    function read_ttable( $dbd, $line, $bs, $rev )
     {
-        if( !$dbd->read_ttable( $line, $bs )) {
+        if( !$dbd->read_ttable( $line, $bs, $rev )) {
             return FALSE;
         } else {
             $tt = array();

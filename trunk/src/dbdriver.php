@@ -129,7 +129,7 @@ class dbdriver
         return $row;
     }
 
-    function read_ttable( $line, $bs )
+    function read_ttable( $line, $bs, $reverse )
     {
         if( !$this->connect_db() ) return FALSE;
 
