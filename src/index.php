@@ -151,7 +151,13 @@
         }
     } else if( isset($_GET['l']) ) {
         $l = $_GET['l'];
-        if( !($route = read_route( $db, $l ) )) {
+        if( isset( $_GET['reverse'] )) {
+            $reverse = TRUE;
+        } else {
+            $reverse = FALSE;
+        }
+
+        if( !($route = read_route( $db, $l, $reverse ) )) {
             $error = "Nie można odczytać trasy!";
         } else {
             if( isset( $_GET['tt'] ) ) {
@@ -163,6 +169,7 @@
                 }
             }
 
+            $smarty->assign( 'directions', $db->read_direction($l) );
             $smarty->assign( 'line', $l );
             $smarty->assign( 'route', $route );
             $smarty->display( 'route.tpl' );
