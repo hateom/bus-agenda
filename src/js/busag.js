@@ -13,6 +13,22 @@ function val_form_login(formData, jqForm, options) {
      return false;
   });
 
+  $("#add_bs").click(function(){
+    $("#form_add_line").hide();
+//    $("#form_add_line").load("./bs.php").appendTo("#form_add_line"); 
+    $("#form_add_line").append('<li>');
+	$.ajax({
+	  url: "bs.php",
+	  type: "GET",
+	  cache: false,
+	  success: function(html) {
+        $("#form_add_line").append(html);
+      }
+    });
+	$("#form_add_line").append('</li>');
+	$("#form_add_line").fadeIn("slow");
+  });
+
   $("#form_login").hide();
   $("<a id='login_dom' href='#'>Panel administratora</a>").appendTo("#login");
   $("#login_dom").click(function(){
