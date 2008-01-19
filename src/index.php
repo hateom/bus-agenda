@@ -154,6 +154,15 @@
         if( !($route = read_route( $db, $l ) )) {
             $error = "Nie można odczytać trasy!";
         } else {
+            if( isset( $_GET['tt'] ) ) {
+                $bs = $_GET['tt'];
+                if( !($ttable = read_ttable( $db, $l, $bs )) ) {
+                    $error = "Nie można odczytać rozkładu jazdy!";
+                } else {
+                    $smarty->assign( 'ttable', $ttable );
+                }
+            }
+
             $smarty->assign( 'line', $l );
             $smarty->assign( 'route', $route );
             $smarty->display( 'route.tpl' );
