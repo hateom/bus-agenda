@@ -17,7 +17,7 @@
         </ul>
     </div>
     <div id="timetable">
-        <h3>Rozkład jazdy</h3>
+        <h3>Rozkład jazdy na przystanku {$bs}</h3>
         <ul>
             {foreach from=$ttable item=foo}
                 <li>{$foo.odj}</li>

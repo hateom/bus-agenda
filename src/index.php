@@ -137,6 +137,18 @@
                     }
                 }
 
+                if( isset( $_GET['e'] ) ) {
+                    $line = $_GET['e'];
+
+                    if( !($route = read_route( $db, $line, FALSE ) )) {
+                        $error = "Nie można odczytać trasy!";
+                    } else {
+                        $smarty->assign( 'route', $route );
+                        $smarty->assign( 'line', $line );
+                        $smarty->display( 'manage_route.tpl' );
+                    }
+                }
+
                 if( !($lines = read_lines( $db )) ) {
                     $error = "Nie można odczytać lini!";
                 } else {
@@ -182,6 +194,7 @@
             $smarty->assign( 'first', $first );
             $smarty->assign( 'last', $last );
             $smarty->assign( 'line', $l );
+            $smarty->assign( 'bs', $db->get_bs_name($bs) );
             $smarty->assign( 'route', $route );
             $smarty->display( 'route.tpl' );
         }
