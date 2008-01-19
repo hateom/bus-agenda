@@ -169,7 +169,18 @@
                 }
             }
 
-            $smarty->assign( 'directions', $db->read_direction($l) );
+            $dir = $db->read_direction($l);
+            $first = $db->get_bs_name( $dir['first'] );
+            $last = $db->get_bs_name( $dir['last'] );
+
+            if( $reverse == TRUE ) {
+                $smarty->assign( 'rev', 1 );
+            } else {
+                $smarty->assign( 'rev', 0 );
+            }
+
+            $smarty->assign( 'first', $first );
+            $smarty->assign( 'last', $last );
             $smarty->assign( 'line', $l );
             $smarty->assign( 'route', $route );
             $smarty->display( 'route.tpl' );
