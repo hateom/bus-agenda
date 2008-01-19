@@ -69,10 +69,15 @@
                 } else if( !preg_match( "/^\d{1,2}\:\d{2}$/i", $time ) ) {
                     $error = "Godzina musi być w formacie HH:MM";
                 } else {
-                    $smarty->assign( 'from', $db->get_bs_name( $from ) );
-                    $smarty->assign( 'to',   $db->get_bs_name( $to ) );
-                    $smarty->assign( 'time', $time );
-                    $smarty->display( 'conn_result.tpl' );
+                    if( !($r_route = find_route( $db, $from, $to, $time )) ) {
+                        $error = "Nie można odnaleźć żądanej trasy!";
+                    } else {
+                        $smarty->assign( 'r_route', $r_route );
+                        $smarty->assign( 'from', $db->get_bs_name( $from ) );
+                        $smarty->assign( 'to',   $db->get_bs_name( $to ) );
+                        $smarty->assign( 'time', $time );
+                        $smarty->display( 'conn_result.tpl' );
+                    }
                 }
             }
 

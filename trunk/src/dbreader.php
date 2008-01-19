@@ -60,5 +60,20 @@
 
         return $bs_info;
     }
+
+    function find_route( $dbd, $from, $to, $time )
+    {
+        if( !$dbd->find_route( $from, $to, $time )) {
+            return FALSE;
+        } else {
+            $r_route = array();
+            while( $row = $dbd->next_route()) {
+                $r_route[] = $row;
+            }
+        }
+        $dbd->free_result();
+
+        return $r_route;
+    }
 ?>
 
