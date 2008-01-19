@@ -1,7 +1,7 @@
 <?php
 
-    $db_host  = 'localhost'; // db host
-    //$db_host  = 'kraftwerk.tuxpowered.net'; // db host
+    //$db_host  = 'localhost'; // db host
+    $db_host  = 'kraftwerk.tuxpowered.net'; // db host
     $db_user  = 'busag'; // database user
     $db_pass  = 'dupa'; // password
     $db_name  = 'busagenda'; // database name
