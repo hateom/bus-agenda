@@ -4,7 +4,7 @@ function val_form_login(formData, jqForm, options) {
         alert('Please enter a value for Password'); 
         return false; 
     } 
-    //return true;
+    return true;
 }
 
  $(document).ready(function(){
