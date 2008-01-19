@@ -54,7 +54,7 @@ class dbdriver
 
         $sql    = 'SELECT * FROM "public"."trasy_view" WHERE "numer" = ' . $line;
         $this->result = pg_query( $this->link, $sql );
-		
+	
         if( !$this->result ) return FALSE;
 
         return TRUE;

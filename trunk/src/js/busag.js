@@ -4,7 +4,7 @@ function val_form_login(formData, jqForm, options) {
         alert('Please enter a value for Password'); 
         return false; 
     } 
-    alert('OK.'); 
+    //return true;
 }
 
  $(document).ready(function(){
@@ -21,5 +21,5 @@ function val_form_login(formData, jqForm, options) {
     return false;
   });
 
-  $("#form_login").ajaxForm( { beforeSubmit: val_form_login } );
+  //$("#form_login").ajaxForm( { beforeSubmit: val_form_login } );
  });
