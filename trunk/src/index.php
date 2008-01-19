@@ -133,8 +133,13 @@
                     if( $nl === "" ) {
                         $error = "Nazwa nie może być pusta!";
                     } else {
-						$smarty->assign( 'line', $nl );
-                        $smarty->display( 'add_route.tpl' );
+						if( !($bs = read_bs( $db )) ) {
+		                    $error = "Nie można odczytać przytsanków!";
+        		        } else {
+							$smarty->assign( 'bs', $bs );
+							$smarty->assign( 'line', $nl );
+	                        $smarty->display( 'add_route.tpl' );
+						}
                     }
                 }
 
@@ -145,8 +150,8 @@
                         $error = "Nie można odczytać trasy!";
                     } else {
                         $smarty->assign( 'route', $route );
-                        $smarty->assign( 'line', $line );
-                        $smarty->display( 'manage_route.tpl' );
+	                    $smarty->assign( 'line', $line );
+	                    $smarty->display( 'manage_route.tpl' );
                     }
                 }
 
