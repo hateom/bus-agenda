@@ -72,7 +72,7 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = '';
+        $sql    = 'SELECT DISTINCT numer FROM "trasy" LEFT JOIN linie ON linie_id = linie.id WHERE trasy.przystanki_id = ' .$bs;
         $this->result = pg_query( $this->link, $sql );
     
         if( !$this->result ) return FALSE;
