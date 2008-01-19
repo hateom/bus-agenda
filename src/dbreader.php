@@ -33,7 +33,7 @@
 
     function read_route( $dbd, $line, $reverse )
     {
-        if( !$dbd->read_route( $line )) {
+        if( !$dbd->read_route( $line, $reverse )) {
             return FALSE;
         } else {
             $bs = array();
