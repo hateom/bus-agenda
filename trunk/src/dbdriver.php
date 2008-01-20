@@ -102,15 +102,20 @@ class dbdriver
 
         return TRUE;		
 	}
+	
 	function line_exists ( $line )
     {
         if( !$this->connect_db() ) return FALSE;
-        $sql = 'SELECT * FROM "linie" WHERE "numer" = '.$linie;
+        $sql = 'SELECT * FROM "linie" WHERE "numer" = '.$line;
         $this->result = pg_query( $this->link, $sql );
-        echo $this->result;
-        if( !$this->result ) return FALSE;
-        return TRUE;
+    
+	    echo $this->result;
+    
+	    if( !$this->result ) return FALSE;
+    
+	    return TRUE;
     }
+	
 	function update_bs( $bs_id, $name, $street1, $street2 )
 	{
 		if( !$this->connect_db() ) return FALSE;
