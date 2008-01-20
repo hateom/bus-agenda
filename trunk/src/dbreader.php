@@ -78,7 +78,7 @@
 
     function read_ttable( $dbd, $line, $bs, $rev )
     {
-        if( !$dbd->read_ttable( $line, $bs, $rev )) {
+        if( !$dbd->read_ttable( $line, $bs, $rev==TRUE?"1":"0" )) {
             return FALSE;
         } else {
             $tt = array();
