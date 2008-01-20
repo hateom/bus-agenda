@@ -287,7 +287,7 @@ class dbdriver
 	//    pg_query($this->link,"commit");
 	  //  pg_query($this->link,"begin");
             $sql = 'SELECT id FROM trasy WHERE linie_id = '.$line.' ORDER BY numer_kolejny DESC LIMIT '.(count($rroute) - $count);
-            $res = pg_query( $this->link, $sql );
+            $this->result = pg_query( $this->link, $sql );
 	    if(!$res)
 	    {
 	    	pg_query($this->link,"rollback");
@@ -297,19 +297,18 @@ class dbdriver
             $r_row = array();
             while( $row = pg_fetch_assoc( $this->result)) {
                 $r_row[] = $row['id'];
-		echo $row['id'];
             }
         //dodanie pustych offsetow
             for($i=0;$i<count($r_row);$i++)
         {
-            $sql = 'INSERT INTO "przesuniecia"("offset", "trasy_id", "powrotna") VALUES (\'00:00\','.$r_row[$i].',\'0\'';
+            $sql = 'INSERT INTO "przesuniecia"("offset", "trasy_id", "powrotna") VALUES (\'00:00\','.$r_row[$i].',\'0\')';
             $this->result = pg_query( $this->link, $sql );
         if(!$this->result)
         {
             $this->result = pg_query( $this->link, "rollback" );
             return FALSE;
         }
-            $sql = 'INSERT INTO "przesuniecia"("offset", "trasy_id", "powrotna") VALUES (\'00:00\','.$r_row[$i].',\'1\'';
+            $sql = 'INSERT INTO "przesuniecia"("offset", "trasy_id", "powrotna") VALUES (\'00:00\','.$r_row[$i].',\'1\')';
             $this->result = pg_query( $this->link, $sql );
         if(!$this->result)
         {
