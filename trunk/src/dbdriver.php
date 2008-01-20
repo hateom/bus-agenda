@@ -114,6 +114,36 @@ class dbdriver
                 return FALSE;
             }
         }
+        
+        $sql = 'SELECT id FROM trasy WHERE linie_id = '.'ORDER BY numer_kolejny ASC';
+        $this->result = pg_query( $this->link, $sql );
+        if(!$this->result)
+        {
+            $this->result = pg_query( $this->link, "rollback" );
+            return FALSE;
+        }
+        r_row = array();
+        while( $row = pg_fetch_assoc( $this->result)) {
+		$r_row[] = $row['id'];
+        }
+        for($i=0;$i<count($route);$i++)
+        {
+            $sql = 'INSERT INTO "przesuniecia"("offset", "trasy_id", "powrotna") VALUES (\'00:00\','.$r_row[$i].',\'0\'';
+            $this->result = pg_query( $this->link, $sql );
+        if(!$this->result)
+        {
+            $this->result = pg_query( $this->link, "rollback" );
+            return FALSE;
+        }
+            $sql = 'INSERT INTO "przesuniecia"("offset", "trasy_id", "powrotna") VALUES (\'00:00\','.$r_row[$i].',\'0\'';
+            $this->result = pg_query( $this->link, $sql );
+        if(!$this->result)
+        {
+            $this->result = pg_query( $this->link, "rollback" );
+            return FALSE;
+        }
+        }
+        for
         $this->result = pg_query( $this->link, "commit" );
         if( !$this->result ) return FALSE;
 
