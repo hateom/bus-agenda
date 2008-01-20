@@ -149,15 +149,15 @@ class dbdriver
         
         $sql = 'SELECT id FROM trasy WHERE linie_id = '.$line.'ORDER BY numer_kolejny ASC';
         $this->result = pg_query($this->link, $sql);
-        $r_row = array();
-        while( $row = $dbd->next_route()) {
-                $r_row[] = $row;
-        }
         if(!$this->query)
              {
                 pg_query( $this->link, "rollback" );
                 return FALSE;
              }
+        $r_row = array();
+        while( $row = pg_fetch_assoc( $this->result)) {
+                $r_row[] = $row;
+        }
         
         if($line != $newline)
         {
@@ -274,7 +274,7 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = '';
+        $sql    = 'SELECT godzina FROM odjazdy WHERE linie_id = '.$line.' AND kierunek = \''.$reverse.'\'';
         $this->result = pg_query( $this->link, $sql );
     
         if( !$this->result ) return FALSE;
