@@ -116,10 +116,10 @@ class dbdriver
 	    return $row['ile'] === "1";
     }
 	
-	function bs_exists( $line )
+	function bs_exists( $bs )
     {
         if( !$this->connect_db() ) return FALSE;
-        $sql = 'SELECT COUNT(*) AS "ile" FROM "linie" WHERE "numer" = '.$line;
+        $sql = 'SELECT COUNT(*) AS "ile" FROM "przystanki" WHERE "nazwa" = \''.$bs.'\'';
         $this->result = pg_query( $this->link, $sql );
     
 	    if( !$this->result ) return FALSE;
