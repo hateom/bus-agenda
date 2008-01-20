@@ -66,7 +66,7 @@ class dbdriver
 	{
 		if( !$this->connect_db() ) return FALSE;
 
-		$sql = 'INSERT INTO ulice_d("nazwa") VALUES('.$name.')';
+		$sql = 'INSERT INTO ulice_d("nazwa") VALUES("'.$name.'")';
         $this->result = pg_query( $this->link, $sql );
 	
         if( !$this->result ) return FALSE;
