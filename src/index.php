@@ -62,6 +62,9 @@
                 $from = $_POST['from'];
                 $to   = $_POST['to'];
                 $time = $_POST['time'];
+				
+				$smarty->assign( 'from', $db->get_bs_name( $from ) );
+                $smarty->assign( 'to',   $db->get_bs_name( $to ) );
                 
                 if( $from == $to ) 
                 {
@@ -73,8 +76,6 @@
                         $error = "Nie można odnaleźć żądanej trasy!";
                     } else {
                         $smarty->assign( 'r_route', $r_route );
-                        $smarty->assign( 'from', $db->get_bs_name( $from ) );
-                        $smarty->assign( 'to',   $db->get_bs_name( $to ) );
                         $smarty->assign( 'time', $time );
                         $smarty->display( 'conn_result.tpl' );
                     }
@@ -108,19 +109,71 @@
     /* administrator mode*/
     } else if( isset( $_GET['a'] )) {
         if( isset( $_SESSION['loggedin'] ) && $_SESSION['loggedin'] == 1 ) {
-            $a = $_GET['a'];            
-            /* managing bus stops */
-            if( $a == 'bs' ) {
-                if( isset( $_POST['add'] ) ) {
-                    $nbs = $_POST['add_bs'];
+            $a = $_GET['a'];        
+			if( !($str = read_streets( $db ))) {
+				$error = "Nie można odczytać ulic!";
+			}
+			/* managing streets */
+			if( $a == 'streets' ) {
+				if( isset( $_POST['add'] ) ) {
+					$ns = $_POST['add'];
+					if( $ns === "" ) {
+						$error = "Nazwa ulicy jest pusta!";
+					} else {
+						if( !$db->save_street( $ns ) ) {
+							$error = "Nie można zapisać ulicy!";
+						}
+					}
+				} else if( isset( $_POST['name']) ) {
+					$nn = $_POST['name'];
+					$id = $_POST['id'];
+					if( !$db->update_street( $id, $nn ) ) {
+						$error = "Nie można zmienić ulicy!";
+					}
+				}
+			
+				$smarty->assign( 'streets', $str );
+				$smarty->display( 'manage_s.tpl' );
+            } else if( $a == 'bs' ) { /* managing bus stops */
+				if( isset( $_POST['street1'] ) ) {
+					$s1   = $_POST['street1'];
+					$s2   = $_POST['street2'];
+					$name = $_POST['name'];
+					
+					// update
+					if( isset( $_GET['u'] ) ) {
+						$bs_id = $_POST['bs_id'];
+						if( !$db->update_bs( $bs_id, $name, $s1, $s2 ) ) {
+							$error = "Nie można zapisać zmian w przystanku!";
+						}
+					} else { // insert new
+						if( !$db->save_bs( $name, $s1, $s2 ) ) {
+							$error = "Nie można zapisać nowego przystanku!";
+						}
+					}
+				}
+			
+				if( isset( $_GET['e'] )) {
+				    $bs = $_GET['e'];
+					$row = $db->read_bs_id( $bs );
+					$smarty->assign( 'bs', $row['nazwa'] );
+					$smarty->assign( 'bs_id', $bs );
+					$smarty->assign( 'street1', $row['ulica1'] );
+					$smarty->assign( 'street2', $row['ulica2'] );
+					$smarty->assign( 'street1_id', $row['ulica1_id'] );
+					$smarty->assign( 'street2_id', $row['ulica2_id'] );
+					$smarty->assign( 'streets', $str );
+					$smarty->display( 'edit_bs.tpl' );
+				} else if( isset( $_POST['add'] ) ) {
+                    $nbs = $_POST['add'];
                     if( $nbs === "" ) {
                         $error = "Nazwa nie może być pusta!";
                     } else {
-                        echo "SQL INSERT = ".$nbs;
+                        $smarty->assign( 'bs', $nbs );
+						$smarty->assign( 'streets', $str );
+						$smarty->display( 'add_bs.tpl' );
                     }
-                }
-
-                if( !($bs = read_bs( $db )) ) {
+                } else if( !($bs = read_bs( $db )) ) {
                     $error = "Nie można odczytać przytsanku!";
                 } else {
                     $smarty->assign( 'bs', $bs );
@@ -128,22 +181,45 @@
                 }
             /* managing lines */
             } else if( $a == 'line' ) {
-                if( isset( $_GET['add'] ) ) {
+			
+				if( !($bs = read_bs( $db )) ) {
+					$error = "Nie można odczytać przytsanków!";
+				}
+                
+				if( isset( $_POST['store']) ) {
+					$rroute = array();
+					foreach( $_POST['route'] as $route )  { 
+						$route = htmlspecialchars( $route, ENT_QUOTES ); 
+						$rroute[] = $route; 
+					}
+					
+					if( !$db->save_route( $_POST['line'], $_POST['desc'], $rroute ) )
+					{
+						$error = "Nie można zapisać nowej trasy!";
+					}
+				} else if( isset( $_POST['update'] ) ) {
+					$rroute = array();
+					foreach( $_POST['route'] as $route )  { 
+						$route = htmlspecialchars( $route, ENT_QUOTES ); 
+						$rroute[] = $route; 
+					}
+					
+					if( !$db->update_route( $_POST['line'], $_POST['name'], $_POST['desc'], $rroute ) )
+					{
+						$error = "Nie można zaktualizować trasy!";
+					}
+				}
+				
+				if( isset( $_GET['add'] ) ) {
                     $nl=$_GET['add'];
                     if( $nl === "" ) {
                         $error = "Nazwa nie może być pusta!";
                     } else {
-						if( !($bs = read_bs( $db )) ) {
-		                    $error = "Nie można odczytać przytsanków!";
-        		        } else {
-							$smarty->assign( 'bs', $bs );
-							$smarty->assign( 'line', $nl );
-	                        $smarty->display( 'add_route.tpl' );
-						}
+						$smarty->assign( 'bs', $bs );
+						$smarty->assign( 'line', $nl );
+	                    $smarty->display( 'add_route.tpl' );
                     }
-                }
-
-                if( isset( $_GET['e'] ) ) {
+                } else if( isset( $_GET['e'] ) ) {
                     $line = $_GET['e'];
 
                     if( !($route = read_route( $db, $line, FALSE ) )) {
@@ -151,11 +227,11 @@
                     } else {
                         $smarty->assign( 'route', $route );
 	                    $smarty->assign( 'line', $line );
+						$smarty->assign( 'bs', $bs );
+						$smarty->assign( 'desc', "TODO" );
 	                    $smarty->display( 'manage_route.tpl' );
                     }
-                }
-
-                if( !($lines = read_lines( $db )) ) {
+                } else if( !($lines = read_lines( $db )) ) {
                     $error = "Nie można odczytać lini!";
                 } else {
                     $smarty->assign( 'lines', $lines );

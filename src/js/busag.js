@@ -15,17 +15,14 @@ function val_form_login(formData, jqForm, options) {
 
   $("#add_bs").click(function(){
     $("#form_add_line").hide();
-//    $("#form_add_line").load("./bs.php").appendTo("#form_add_line"); 
-    $("#form_add_line").append('<li>');
 	$.ajax({
-	  url: "bs.php",
+	  url: "bs.php?n=route[]",
 	  type: "GET",
 	  cache: false,
 	  success: function(html) {
         $("#form_add_line").append(html);
       }
     });
-	$("#form_add_line").append('</li>');
 	$("#form_add_line").fadeIn("slow");
   });
 

@@ -38,15 +38,77 @@ class dbdriver
 		$this->link = 0;
 	}
 
-    function test()
-    {
+    function save_route( $line, $desc, $route )
+	{/*
 		if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT * FROM "public"."linie"';
-        $result = pg_query( $this->link, $sql );
-		
-        return $result;
-    }
+		$sql = '';
+        $this->result = pg_query( $this->link, $sql );
+	
+        if( !$this->result ) return FALSE;*/
+
+        return TRUE;		
+	}
+	
+	function save_bs( $name, $street1, $street2 )
+	{/*
+		if( !$this->connect_db() ) return FALSE;
+
+		$sql = '';
+        $this->result = pg_query( $this->link, $sql );
+	
+        if( !$this->result ) return FALSE;*/
+
+        return TRUE;		
+	}
+	
+	function save_street( $name )
+	{/*
+		if( !$this->connect_db() ) return FALSE;
+
+		$sql = '';
+        $this->result = pg_query( $this->link, $sql );
+	
+        if( !$this->result ) return FALSE;*/
+
+        return TRUE;		
+	}
+	
+	function update_street( $id, $name )
+	{/*
+		if( !$this->connect_db() ) return FALSE;
+
+		$sql = '';
+        $this->result = pg_query( $this->link, $sql );
+	
+        if( !$this->result ) return FALSE;*/
+
+        return TRUE;		
+	}
+	
+	function update_bs( $bs_id, $name, $street1, $street2 )
+	{/*
+		if( !$this->connect_db() ) return FALSE;
+
+		$sql = '';
+        $this->result = pg_query( $this->link, $sql );
+	
+        if( !$this->result ) return FALSE;*/
+
+        return TRUE;		
+	}
+	
+	function update_route( $line, $newline, $desc, $rroute )
+	{/*
+		if( !$this->connect_db() ) return FALSE;
+
+		$sql = '';
+        $this->result = pg_query( $this->link, $sql );
+	
+        if( !$this->result ) return FALSE;*/
+
+        return TRUE;		
+	}
 
     function read_route($line, $reverse)
 	{
@@ -111,12 +173,12 @@ class dbdriver
 
     function find_route( $from, $to, $time )
     {
-        if( !$this->connect_db() ) return FALSE;
+        /*if( !$this->connect_db() ) return FALSE;
 
         $sql    = '';
         $this->result = pg_query( $this->link, $sql );
     
-        if( !$this->result ) return FALSE;
+        if( !$this->result ) return FALSE;*/
 
         return TRUE;
     }
@@ -182,7 +244,20 @@ class dbdriver
         return $row['nazwa'];
     }
 
-    function read_bs()
+    function read_bs_id( $id )
+    {
+		if( !$this->connect_db() ) return FALSE;
+
+        $sql    = 'SELECT id, przystanki.nazwa, ulica1_id, (SELECT ulice_d.nazwa FROM ulice_d WHERE ulice_d.id = ulica1_id) AS ulica1, ulica2_id, (SELECT ulice_d.nazwa FROM ulice_d WHERE ulice_d.id = ulica2_id) AS ulica2 FROM "public"."przystanki" WHERE przystanki.id='.$id.'ORDER BY "nazwa"';
+        $this->result = pg_query( $this->link, $sql );
+		
+        if( !$this->result ) return FALSE;
+
+		$row = pg_fetch_assoc( $this->result );
+        return $row;
+    }
+	
+	function read_bs()
     {
 		if( !$this->connect_db() ) return FALSE;
 
@@ -206,7 +281,7 @@ class dbdriver
     {
 		if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT * FROM "public"."ulice_d"';
+        $sql    = 'SELECT * FROM "public"."ulice_d" ORDER BY "nazwa"';
         $this->result = pg_query( $this->link, $sql );
 		
         if( !$this->result ) return FALSE;

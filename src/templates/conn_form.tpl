@@ -5,16 +5,24 @@
             <ul id="find_conn">
                 <li><label for="from">Z przystanku: </label>
                 <select name="from">
-{foreach from=$bs item=foo}
-                    <option value="{$foo.id}">{$foo.nazwa}</option>
-{/foreach}
+					{foreach from=$bs item=foo}
+						{if $from == $foo.nazwa}
+	                    	<option selected value="{$foo.id}">{$foo.nazwa}</option>
+                        {else}
+                        	<option value="{$foo.id}">{$foo.nazwa}</option>
+                        {/if}
+					{/foreach}
                 </select>
                 </li>
                 <li><label for="to">Do przystanku: </label>
                 <select name="to">
-{foreach from=$bs item=foo}
-                    <option value="{$foo.id}">{$foo.nazwa}</option>
-{/foreach}
+					{foreach from=$bs item=foo}
+                   		{if $to == $foo.nazwa}
+                    		<option selected value="{$foo.id}">{$foo.nazwa}</option>
+                        {else}
+                    		<option value="{$foo.id}">{$foo.nazwa}</option>
+                        {/if}   
+					{/foreach}
                 </select>
                 </li>
                 <li><label for="time">O godzinie: </label><input type="text" name="time" value="{$time}"/></li>
