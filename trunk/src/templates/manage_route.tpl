@@ -27,4 +27,6 @@
         <input id="add_bs" type="button" value="Dodaj przystanek" />
     	<input type="submit" value="Zapisz zmiany" />
     </form>
+    
+    <p>&laquo; <a href="?a=line">powrót do edycji linii</a></p>
 </div>
