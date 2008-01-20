@@ -131,6 +131,10 @@
 						$error = "Nie można zmienić ulicy!";
 					}
 				}
+
+				if( !($str = read_streets( $db ))) {
+					$error = "Nie można odczytać ulic!";
+				}
 			
 				$smarty->assign( 'streets', $str );
 				$smarty->display( 'manage_s.tpl' );
