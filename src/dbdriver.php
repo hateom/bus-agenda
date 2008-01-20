@@ -138,7 +138,7 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT przystanki_id FROM (SELECT przystanki_id, numer_kolejny FROM trasy LEFT JOIN linie ON trasy.linie_id = linie.id WHERE numer = '.$line.') AS kol where numer_kolejny=0 OR numer_kolejny = (SELECT numer_kolejny FROM trasy ORDER BY numer_kolejny DESC LIMIT 1)';
+        $sql    = 'SELECT przystanki_id FROM (SELECT przystanki_id, numer_kolejny FROM trasy WHERE linie_id = '.$line.') AS kol where numer_kolejny=0 OR numer_kolejny = (SELECT numer_kolejny FROM trasy ORDER BY numer_kolejny DESC LIMIT 1)';
         $this->result = pg_query( $this->link, $sql );
     
         if( !$this->result ) return FALSE;
@@ -159,7 +159,7 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT DISTINCT numer FROM "trasy" LEFT JOIN linie ON linie_id = linie.id WHERE trasy.przystanki_id = ' .$bs;
+        $sql    = 'SELECT DISTINCT linie_id FROM "trasy" WHERE trasy.przystanki_id = ' .$bs;
         $this->result = pg_query( $this->link, $sql );
     
         if( !$this->result ) return FALSE;
