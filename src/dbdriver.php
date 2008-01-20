@@ -143,7 +143,7 @@ class dbdriver
             return FALSE;
         }
         }
-        for
+        
         $this->result = pg_query( $this->link, "commit" );
         if( !$this->result ) return FALSE;
 
