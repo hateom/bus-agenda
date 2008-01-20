@@ -177,12 +177,43 @@
 			} else if( isset( $get['ett'] ) ) {
 				$line = $get['ett'];
 
-				if( !($table = $db->read_table( $line, '0' )) ) {
-    	            parent::err("Nie można odczytać rozkładu jazdy!");
+				if( isset( $get['reversed'] ) ) {
+					$smarty->assign( 'rev', 1 );
+					$reversed = '1';
+				} else {
+					$smarty->assign( 'rev', 0 );
+					$reversed = '0';
+				}
+
+				if( !$db->read_table( $line, $reversed ) ) {
+    	            parent::err("Nie można odczytać rozkładu jazdy! (rt)");
 					return FALSE;
         	    } else {
+					$table = array();
+					while( $row = $db->next_table() ) {
+						$table[] = $row;
+					}
+					$db->free_result();
             	    $smarty->assign( 'table', $table );
                 }
+				
+				if( !($offset = $db->read_offset( $line, $reversed ) ) ) {
+    	            parent::err("Nie można odczytać rozkładu jazdy! (ro)");
+					return FALSE;				
+				} else {
+					$smarty->assign( 'offset', $offset );
+				}
+
+				if( !($dir = $db->read_direction($line) )) {
+					parent::err("Nie można odczytać trasy!");
+					return FALSE;
+				}
+			
+       		    $first = $db->get_bs_name( $dir['first'] );
+		   	    $last = $db->get_bs_name( $dir['last'] );
+
+				$smarty->assign( 'first', $first );
+				$smarty->assign( 'last',  $last );
 
 				$smarty->assign( 'line', $line );
 				$smarty->display( 'edit_tt.tpl' );
