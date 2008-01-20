@@ -30,6 +30,19 @@ function val_form_login(formData, jqForm, options) {
     });
 	$("#form_add_line").fadeIn("slow");
   });
+  
+  $("#add_hour").click(function(){
+    $("#hours").hide();
+	$.ajax({
+	  url: "hour.php?n=hour[]",
+	  type: "GET",
+	  cache: false,
+	  success: function(html) {
+        $("#hours").append(html);
+      }
+    });
+	$("#hours").fadeIn("slow");
+  });
 
   $("#form_login").hide();
   $("<a id='login_dom' href='#'>Panel administratora</a>").appendTo("#login");
