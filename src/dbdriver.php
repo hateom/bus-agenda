@@ -63,10 +63,10 @@ class dbdriver
 	}
 	
 	function save_street( $name )
-	{/*
+	{
 		if( !$this->connect_db() ) return FALSE;
 
-		$sql = '';
+		$sql = 'INSERT INTO ulice_d("nazwa") VALUES('.$name.')';
         $this->result = pg_query( $this->link, $sql );
 	
         if( !$this->result ) return FALSE;*/
@@ -75,10 +75,10 @@ class dbdriver
 	}
 	
 	function update_street( $id, $name )
-	{/*
+	{
 		if( !$this->connect_db() ) return FALSE;
 
-		$sql = '';
+		$sql = 'UPDATE ulice_d SET "nazwa" = '.$name.' WHERE id = .'$id;
         $this->result = pg_query( $this->link, $sql );
 	
         if( !$this->result ) return FALSE;*/
@@ -87,10 +87,10 @@ class dbdriver
 	}
 	
 	function update_bs( $bs_id, $name, $street1, $street2 )
-	{/*
+	{
 		if( !$this->connect_db() ) return FALSE;
 
-		$sql = '';
+		$sql = 'UPDATE przystanki SET "nazwa" = '.$name.', ulica1_id = '.$street1.', ulica2_id = '.$street2.' WHERE id = .'$bs_id';
         $this->result = pg_query( $this->link, $sql );
 	
         if( !$this->result ) return FALSE;*/
