@@ -103,7 +103,20 @@ class dbdriver
         return TRUE;		
 	}
 	
-	function line_exists ( $line )
+	function line_exists( $line )
+    {
+        if( !$this->connect_db() ) return FALSE;
+        $sql = 'SELECT COUNT(*) AS "ile" FROM "linie" WHERE "numer" = '.$line;
+        $this->result = pg_query( $this->link, $sql );
+    
+	    if( !$this->result ) return FALSE;
+		
+		$row = pg_fetch_assoc( $this->result );
+    
+	    return $row['ile'] === "1";
+    }
+	
+	function bs_exists( $line )
     {
         if( !$this->connect_db() ) return FALSE;
         $sql = 'SELECT COUNT(*) AS "ile" FROM "linie" WHERE "numer" = '.$line;
