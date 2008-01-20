@@ -427,24 +427,6 @@ class dbdriver
         return $row;
     }
 
-
-/*
-	function foo()
-	{
-		if( !$this->connect_db() ) return FALSE;
-		
-		if( $type == "SENT" ) {
-			$id = 1;
-		} else {
-			$id = 2;
-		}
-		
-        $sql    = "INSERT INTO `iMessage` (`id` ,`sender` ,`date` ,`time`, `type` ,`content` ) ";
-        $result = pg_query( $sql, $this->link );
-		
-		return $result;
-	}
-*/	
 	function free_result()
 	{
 		pg_free_result( $this->result );
