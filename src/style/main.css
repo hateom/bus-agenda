@@ -140,6 +140,16 @@ body {
     margin: 0;
 }
 
+.content a, content a:visited, content a:active {
+	color: #00f;
+	text-decoration: none;
+}
+
+.content a:hover {
+	color: #66f;
+	text-decoration: underline;
+}
+
 .lines li a, .lines li a:visited {
     color: #00f;
     text-decoration: none;
