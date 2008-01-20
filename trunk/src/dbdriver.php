@@ -184,7 +184,16 @@ class dbdriver
 
         return TRUE;		
 	}
+    function read_offset($line, $reverse)
+    {
+        if( !$this->connect_db() ) return FALSE;
+        $sql = 'SELECT trasy.przystanki_id AS przystanek_id, przystanki.nazwa AS nazwa, przesuniecia.offset FROM przesuniecia LEFT JOIN trasy ON trasy.id = przesuniecia.trasy_id LEFT JOIN przystanki ON przystanki.id = trasy.przystanki_id WHERE trasy.linie_id = '. $line .' AND przesuniecia.powrotna = \''.$reverse.'\'';
+        $this->result = pg_query( $this->link, $sql );
+	
+        if( !$this->result ) return FALSE;
 
+        return TRUE;
+    }
     function read_route($line, $reverse)
 	{
 		if( !$this->connect_db() ) return FALSE;
