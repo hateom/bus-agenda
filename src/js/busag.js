@@ -34,7 +34,7 @@ function val_form_login(formData, jqForm, options) {
   $("#add_hour").click(function(){
     $("#hours").hide();
 	$.ajax({
-	  url: "hour.php?n=hour[]",
+	  url: "hour.php?n=nhour[]",
 	  type: "GET",
 	  cache: false,
 	  success: function(html) {
