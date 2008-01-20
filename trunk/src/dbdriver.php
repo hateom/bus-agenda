@@ -138,12 +138,16 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT przystanki_id FROM (SELECT przystanki_id, numer_kolejny FROM trasy LEFT JOIN linie ON trasy.linie_id = linie.id WHERE numer = 144) AS kol where numer_kolejny=0 OR numer_kolejny = (SELECT numer_kolejny FROM trasy ORDER BY numer_kolejny DESC LIMIT 1)';
+        $sql    = 'SELECT przystanki_id FROM (SELECT przystanki_id, numer_kolejny FROM trasy LEFT JOIN linie ON trasy.linie_id = linie.id WHERE numer = '.$line.') AS kol where numer_kolejny=0 OR numer_kolejny = (SELECT numer_kolejny FROM trasy ORDER BY numer_kolejny DESC LIMIT 1)';
         $this->result = pg_query( $this->link, $sql );
     
         if( !$this->result ) return FALSE;
         $row1 = pg_fetch_assoc( $this->result );
         $row2 = pg_fetch_assoc( $this->result );
+
+		if( !$row1 || !$row2 ) {
+			return FALSE;
+		}
 
         $row['first'] = $row1['przystanki_id'];
         $row['last']  = $row2['przystanki_id'];

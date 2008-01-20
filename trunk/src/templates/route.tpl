@@ -4,7 +4,7 @@
         {if $rev == 0}
             <p>{$first} - {$last} (<a href="?l={$line}&amp;reverse">odwróć</a>)</p>
         {else}
-            <p>{$first} - {$last} (<a href="?l={$line}">odwróć</a>)</p>
+            <p>{$last} - {$first} (<a href="?l={$line}">odwróć</a>)</p>
         {/if}
         <ol class="lines">
         {foreach from=$route item=foo}

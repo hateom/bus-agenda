@@ -263,9 +263,13 @@
                 }
             }
 
-            $dir = $db->read_direction($l);
+            if( !($dir = $db->read_direction($l) )) {
+				$error = "Nie można odczytać trasy!";
+			}
             $first = $db->get_bs_name( $dir['first'] );
             $last = $db->get_bs_name( $dir['last'] );
+			
+			echo $first . " (" . $dir['first'] . ") , " . $last . " (" . $dir['last'] . ")<br/>";
 
             if( $reverse == TRUE ) {
                 $smarty->assign( 'rev', 1 );
