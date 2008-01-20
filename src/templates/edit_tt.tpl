@@ -7,7 +7,7 @@
     	<p>{$last} - {$first} (<a href="?a=line&ett={$line}">odwróć</a>)</p>
     {/if}
     
-    <form>
+    <form action="./?a=line" method="post">
     <div id="route">
     <p>Godziny odjazdów z pętli:</p>
 		<ol id="hours">
@@ -26,6 +26,7 @@
         </ol>
     </div>
     <div class="clear"></div>
+    <input type="hidden" name="utt" value="1" />
     <input type="submit" value="Zatwierdź"/>
     </form>
 </div>

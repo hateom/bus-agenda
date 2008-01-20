@@ -132,6 +132,21 @@
 			}
 		}
 		
+		function update_tt( $post, $db )
+		{
+			foreach( $post['hour'] as $hour ) {
+				echo $hour . "<br/>";
+			}
+			
+			foreach( $post['oid'] as $oid ) {
+				echo $oid . "<br/>";
+			}
+			
+			foreach( $post['offset'] as $offset ) {
+				echo $offset . "<br/>";
+			}
+		}
+		
 		function manage_lines( $get, $post, $db, $smarty )
 		{
 			if( !($bs = read_bs( $db )) ) {
@@ -143,6 +158,8 @@
 				$this->save_route( $post, $db );
 			} else if( isset( $post['update'] ) ) {
 				$this->update_route( $post, $db );
+			} else if( isset( $post['utt'] ) ) {
+				$this->update_tt( $post, $db );
 			}
 				
 			if( isset( $get['add'] ) ) {
