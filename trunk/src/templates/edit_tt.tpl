@@ -12,7 +12,7 @@
     <p>Godziny odjazdów z pętli:</p>
 		<ol id="hours">
 	        {foreach from=$table item=foo}
-	        	<li class="time"><input type="text" value="{$foo.godzina}" name="hour[]" /><input type="hidden" name="hour_id" value="{$foo.id}" /></li>
+	        	<li class="time"><input type="text" value="{$foo.godzina}" name="hour[]" /><input type="hidden" name="hour_id[]" value="{$foo.id}" /></li>
 			{/foreach}
 		</ol>
     	<input id="add_hour" type="button" value="Dodaj godzinę" />

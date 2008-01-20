@@ -133,9 +133,17 @@
 		}
 		
 		function update_tt( $post, $db )
-		{
+		{/*
 			foreach( $post['hour'] as $hour ) {
 				echo $hour . "<br/>";
+			}
+			
+			foreach( $post['hour_id'] as $hour_id ) {
+				echo $hour_id . "<br/>";
+			}
+			
+			foreach( $post['nhour'] as $nhour ) {
+				echo $nhour . "<br/>";
 			}
 			
 			foreach( $post['oid'] as $oid ) {
@@ -144,6 +152,12 @@
 			
 			foreach( $post['offset'] as $offset ) {
 				echo $offset . "<br/>";
+			}
+			*/
+			if( !$db->update_tt( $post['hour'], $post['hour_id'], $post['nhour'], $post['offset'], $post['ooid'] ) ) {
+				parent::err("Nie można zaktualizować rozkładu!");
+			} else {
+				parent::ntf("Rozkład został zaktualizowany!");
 			}
 		}
 		
