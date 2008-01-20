@@ -269,7 +269,7 @@
             $first = $db->get_bs_name( $dir['first'] );
             $last = $db->get_bs_name( $dir['last'] );
 			
-			echo $first . " (" . $dir['first'] . ") , " . $last . " (" . $dir['last'] . ")<br/>";
+			// echo $first . " (" . $dir['first'] . ") , " . $last . " (" . $dir['last'] . ")<br/>";
 
             if( $reverse == TRUE ) {
                 $smarty->assign( 'rev', 1 );

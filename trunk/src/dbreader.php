@@ -83,6 +83,9 @@
         } else {
             $tt = array();
             while( $row = $dbd->next_ttable()) {
+				if( preg_match( "/^([\d]*)\:([\d]*)\:([\d]*)$/", $row['odj'], $out ) ) {
+					$row['odj'] = $out[1] . ":" . $out[2];
+				}
                 $tt[] = $row;
             }
         }
