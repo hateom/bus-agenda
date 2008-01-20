@@ -177,7 +177,7 @@
 			} else if( isset( $get['ett'] ) ) {
 				$line = $get['ett'];
 
-				if( !($ttable = $db->read_stable( $line, $reverse )) ) {
+				if( !($ttable = $db->read_table( $line, $reverse )) ) {
     	            parent::err("Nie można odczytać rozkładu jazdy!");
 					return FALSE;
         	    } else {
