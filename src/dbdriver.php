@@ -122,7 +122,7 @@ class dbdriver
             $this->result = pg_query( $this->link, "rollback" );
             return FALSE;
         }
-        r_row = array();
+        $r_row = array();
         while( $row = pg_fetch_assoc( $this->result)) {
 		$r_row[] = $row['id'];
         }
