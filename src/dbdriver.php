@@ -138,7 +138,7 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT przystanki_id FROM (SELECT przystanki_id, numer_kolejny FROM trasy WHERE linie_id = '.$line.') AS kol where numer_kolejny=0 OR numer_kolejny = (SELECT numer_kolejny FROM trasy ORDER BY numer_kolejny DESC LIMIT 1)';
+        $sql    = 'SELECT przystanki_id FROM (SELECT przystanki_id, numer_kolejny FROM trasy WHERE linie_id = '.$line.') AS kol where numer_kolejny=0 OR numer_kolejny = (SELECT numer_kolejny FROM trasy WHERE trasy.linie_id ='. $line .'ORDER BY numer_kolejny DESC LIMIT 1)';
         $this->result = pg_query( $this->link, $sql );
     
         if( !$this->result ) return FALSE;
