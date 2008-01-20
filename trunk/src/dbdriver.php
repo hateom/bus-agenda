@@ -147,34 +147,38 @@ class dbdriver
         $this->result = pg_query( $this->link, "begin" );
         if( !$this->result ) return FALSE;
         
-        $sql = 'SELECT id FROM trasy WHERE linie_id = '.$line.'ORDER BY numer_kolejny ASC';
-        $this->result = pg_query($this->link, $sql);
-        if(!$this->query)
+        $sql = 'SELECT id FROM trasy WHERE linie_id = '.$line.' ORDER BY numer_kolejny ASC';
+	$this->result = pg_query($this->link, $sql);
+        if(!$this->result)
              {
+	     echo $sql.' failed';
                 pg_query( $this->link, "rollback" );
                 return FALSE;
              }
+
         $r_row = array();
         while( $row = pg_fetch_assoc( $this->result)) {
                 $r_row[] = $row;
         }
-        
+     
         if($line != $newline)
         {
              $sql = 'UPDATE linie SET "numer" = \''.$newline.'\' WHERE numer = \''.$line.'\'';
-             $this->result = pg_query($this->link, $sql);
-             if(!$this->query)
+	     $this->result = pg_query($this->link, $sql);
+             if(!$this->result)
              {
                 pg_query( $this->link, "rollback" );
+		echo $sql.' Failed';
                 return FALSE;
              }
         }
         for( $i=0; $i<count($rroute); $i++)
         {
              $sql = 'UPDATE trasy SET "przystanki_id" = \''.$rroute[$i].'\' WHERE id = \''.$r_row[i].'\'';
-             $this->result = pg_query($this->link, $sql);
-             if(!$this->query)
+ $this->result = pg_query($this->link, $sql);
+             if(!$this->result)
              {
+	     	echo $sql.' failed ';
                 pg_query( $this->link, "rollback" );
                 return FALSE;
              }
