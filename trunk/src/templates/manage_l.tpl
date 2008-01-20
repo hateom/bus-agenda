@@ -9,7 +9,7 @@
 
     <ul>
 {foreach from=$lines item=foo}
-        <li>{$foo.numer} <em><a href="?a=line&e={$foo.numer}">zmień</a><!--, <a href="?a=line&d={$foo.numer}">usuń</a>--></em></li>
+        <li>{$foo.numer} <em><a href="?a=line&e={$foo.numer}">zmień</a>, <a href="?a=line&ett={$foo.numer}">zmień rozkład</a></em></li>
 {/foreach}
     </ul>
 </div>
