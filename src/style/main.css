@@ -101,6 +101,7 @@ body {
     color: #000;
     font-family: "Trebuchet MS", "Arial";
     text-decoration: none;
+	font-weight: bolder;
 }
 
 #admin a {
@@ -110,6 +111,7 @@ body {
     color: #000;
     font-family: "Trebuchet MS", "Arial";
     text-decoration: none;
+	font-weight: bolder;
 }
 
 #panel a:hover, #admin a:hover {
@@ -146,8 +148,9 @@ body {
 }
 
 .content a:hover {
-	color: #66f;
-	text-decoration: underline;
+	color: #00c;
+	text-decoration: none;
+	border-bottom: 1px solid #000;
 }
 
 .lines li a, .lines li a:visited {
@@ -246,4 +249,8 @@ body {
 #form_add_bs select {
 	width: 250px;
 	margin: 3px;
+}
+
+.time {
+	font-family: "Bookman Old Style", Georgia, "Palatino Linotype";
 }

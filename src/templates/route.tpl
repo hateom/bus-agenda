@@ -21,7 +21,7 @@
         <h3>Rozkład jazdy na przystanku {$bs}</h3>
         <ul>
             {foreach from=$ttable item=foo}
-                <li>{$foo.odj}</li>
+                <li class="time">{$foo.odj}</li>
             {/foreach}
         </ul>
     </div>
