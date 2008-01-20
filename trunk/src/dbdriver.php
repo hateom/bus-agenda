@@ -106,14 +106,14 @@ class dbdriver
 	function line_exists ( $line )
     {
         if( !$this->connect_db() ) return FALSE;
-        $sql = 'SELECT * FROM "linie" WHERE "numer" = '.$line;
+        $sql = 'SELECT COUNT(*) AS "ile" FROM "linie" WHERE "numer" = '.$line;
         $this->result = pg_query( $this->link, $sql );
     
-	    echo $this->result;
-    
 	    if( !$this->result ) return FALSE;
+		
+		$row = pg_fetch_assoc( $this->result );
     
-	    return TRUE;
+	    return $row['ile'] === "1";
     }
 	
 	function update_bs( $bs_id, $name, $street1, $street2 )
