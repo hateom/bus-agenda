@@ -21,7 +21,7 @@
     	<p>Przesunięcia czasowe: </p>
     	<ol>
         	{foreach from=$offset item=foo}
-	        	<li><input type="text" name="{$foo.przystanek_id}" value="{$foo.offset}" /> <em>{$foo.nazwa}</em></li>
+	        	<li><input type="text" name="{$foo.offset_id}" value="{$foo.offset}" /> <em>{$foo.nazwa}</em></li>
             {/foreach}
         </ol>
     </div>
