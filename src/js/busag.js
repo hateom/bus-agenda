@@ -12,6 +12,11 @@ function val_form_login(formData, jqForm, options) {
      $(".error").fadeOut("fast");
      return false;
   });
+  
+  $(".notify a").click(function(){
+     $(".notify").fadeOut("fast");
+     return false;
+  });
 
   $("#add_bs").click(function(){
     $("#form_add_line").hide();

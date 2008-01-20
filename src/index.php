@@ -122,6 +122,8 @@
 					} else {
 						if( !$db->save_street( $ns ) ) {
 							$error = "Nie można zapisać ulicy!";
+						} else {
+							$notify = "Dodano nową ulicę!";
 						}
 					}
 				} else if( isset( $_POST['name']) ) {
@@ -129,6 +131,8 @@
 					$id = $_POST['id'];
 					if( !$db->update_street( $id, $nn ) ) {
 						$error = "Nie można zmienić ulicy!";
+					} else {
+						$notify = "Ulica ostała zaktualizowana!";
 					}
 				}
 
@@ -149,10 +153,14 @@
 						$bs_id = $_POST['bs_id'];
 						if( !$db->update_bs( $bs_id, $name, $s1, $s2 ) ) {
 							$error = "Nie można zapisać zmian w przystanku!";
+						} else {
+							$notify = "Zmieniono nazwę przystanku!";
 						}
 					} else { // insert new
 						if( !$db->save_bs( $name, $s1, $s2 ) ) {
 							$error = "Nie można zapisać nowego przystanku!";
+						} else {
+							$notify = "Nowy przystanek został dodany!";
 						}
 					}
 				}
@@ -200,6 +208,8 @@
 					if( !$db->save_route( $_POST['line'], $_POST['desc'], $rroute ) )
 					{
 						$error = "Nie można zapisać nowej trasy!";
+					} else {
+						$notify = "Trasa zapisana!";
 					}
 				} else if( isset( $_POST['update'] ) ) {
 					$rroute = array();
@@ -211,6 +221,8 @@
 					if( !$db->update_route( $_POST['line'], $_POST['name'], $_POST['desc'], $rroute ) )
 					{
 						$error = "Nie można zaktualizować trasy!";
+					} else {
+						$notify = "Trasa została zaktualizowana!";
 					}
 				}
 				
@@ -310,6 +322,11 @@
     if( isset( $error ) ) {
         $smarty->assign( "error_msg", $error );
         $smarty->display( 'error.tpl' );
+    }
+
+    if( isset( $notify ) ) {
+        $smarty->assign( "notify_msg", $notify );
+        $smarty->display( 'notify.tpl' );
     }
 
     $smarty->display( 'foot.tpl' );
