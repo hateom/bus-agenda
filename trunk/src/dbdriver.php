@@ -39,15 +39,32 @@ class dbdriver
 	}
 
     function save_route( $line, $desc, $route )
-	{/*
+	{
 		if( !$this->connect_db() ) return FALSE;
-
-		$sql = '';
+		
+        $this->result = pg_query( $this->link, "begin" );
+        if( !$this->result ) return FALSE;
+        $sql = 'INSERT INTO "linie"("numer","typ","opis") VALUES (\''.$line.'\', \'0\', \''.$desc.'\')';
         $this->result = pg_query( $this->link, $sql );
-	
-        if( !$this->result ) return FALSE;*/
+        if( !$this->result ) 
+        {
+            $res = pg_query( $this->link, "rollback" );
+            return FALSE;
+        }
+        for($i=0;$i<count($route);$i++)
+        {
+            $sql = 'INSERT INTO "trasy"("linie_id", "przystanki_id", "numer_kolejny") VALUES (\''.$line.'\', \''. $route[$i] .'\',\''. $i.'\')';
+            $res = pg_query( $this->link, $sql );
+            if (!$res) 
+            {
+                $res = pg_query( $this->link, "rollback" );
+                return FALSE;
+            }
+        }
+        $this->result = pg_query( $this->link, "commit" );
+        if( !$this->result ) return FALSE;
 
-        return TRUE;		
+        return TRUE;	
 	}
 	
 	function save_bs( $name, $street1, $street2 )
