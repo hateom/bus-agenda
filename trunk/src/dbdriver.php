@@ -55,6 +55,7 @@ class dbdriver
                 return FALSE;
             }
         }
+	if(count($new_hour) > 0){
         foreach($new_hour as $nh)
         {
             $sql = 'INSERT INTO odjazdy("linie_id", "kierunek", "godzina") VALUES(\''.$line.'\',\''.$reversed.'\',\''.$nh.'\')';
@@ -66,6 +67,7 @@ class dbdriver
                 return FALSE;
             }
         }
+	}
         $this->result = pg_query( $this->link, "commit" );
         if(!$this->result) return FALSE;
         
