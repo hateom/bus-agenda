@@ -154,7 +154,7 @@
 				echo $offset . "<br/>";
 			}
 			*/
-			if( !$db->update_tt( $post['hour'], $post['hour_id'], $post['nhour'], $post['offset'], $post['ooid'] ) ) {
+			if( !$db->update_tt( $post['line'], $post['reversed'], $post['hour'], $post['hour_id'], $post['nhour'], $post['offset'], $post['oid'] ) ) {
 				parent::err("Nie można zaktualizować rozkładu!");
 			} else {
 				parent::ntf("Rozkład został zaktualizowany!");

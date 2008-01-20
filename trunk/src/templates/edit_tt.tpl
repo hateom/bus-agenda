@@ -27,6 +27,8 @@
     </div>
     <div class="clear"></div>
     <input type="hidden" name="utt" value="1" />
+    <input type="hidden" name="reversed" value="{$rev}" />
+    <input type="hidden" name="line" value="{$line}" />
     <input type="submit" value="Zatwierdź"/>
     </form>
 </div>
