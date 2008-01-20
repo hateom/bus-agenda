@@ -158,7 +158,7 @@ class dbdriver
 
         $r_row = array();
         while( $row = pg_fetch_assoc( $this->result)) {
-                $r_row[] = $row;
+		$r_row[] = $row['id'];
         }
      
         if($line != $newline)
@@ -174,7 +174,7 @@ class dbdriver
         }
         for( $i=0; $i<count($rroute); $i++)
         {
-             $sql = 'UPDATE trasy SET "przystanki_id" = \''.$rroute[$i].'\' WHERE id = \''.$r_row[i].'\'';
+             $sql = 'UPDATE trasy SET "przystanki_id" = \''.$rroute[$i].'\' WHERE id = \''.$r_row[$i].'\'';
  $this->result = pg_query($this->link, $sql);
              if(!$this->result)
              {
