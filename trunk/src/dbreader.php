@@ -63,16 +63,16 @@
 
     function find_route( $dbd, $from, $to, $time )
     {
+		$r_route = array();
         if( !$dbd->find_route( $from, $to, $time )) {
             return FALSE;
         } else {
-            $r_route = array();
+            
             while( $row = $dbd->next_route()) {
                 $r_route[] = $row;
             }
         }
         $dbd->free_result();
-
         return $r_route;
     }
 
@@ -90,5 +90,18 @@
 
         return $tt;
     }
+	
+	function read_streets( $dbd )
+	{
+		if( !$dbd->read_streets() ) return FALSE;
+		
+		$str = array();
+		while( $row = $dbd->next_street() ) {
+			$str[] = $row;
+		}
+		$dbd->free_result();
+		
+		return $str;
+	}
 ?>
 
