@@ -27,5 +27,5 @@
         <input type="hidden" name="bs_id" value="{$bs_id}" />
         <input type="submit" value="Zatwierdź przystanek" />
     </form>
-    <p>&laquo; <a href="?a=bs">powrót do edycji przytanków</a></p>
+    <p>&laquo; <a href="?a=bs">powrót do edycji przystanków</a></p>
 </div>
