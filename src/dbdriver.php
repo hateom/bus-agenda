@@ -270,6 +270,23 @@ class dbdriver
         return $row;
     }
 
+    function read_table( $line, $reverse )
+    {
+        if( !$this->connect_db() ) return FALSE;
+
+        $sql    = '';
+        $this->result = pg_query( $this->link, $sql );
+    
+        if( !$this->result ) return FALSE;
+		
+		$out = array();
+		while( $row = pg_fetch_assoc( $this->result ) ) {
+			$out[] = $row;	
+		}
+
+        return $out;
+    }
+
     function read_ttable( $line, $bs, $reverse )
     {
         if( !$this->connect_db() ) return FALSE;
