@@ -177,11 +177,11 @@
 			} else if( isset( $get['ett'] ) ) {
 				$line = $get['ett'];
 
-				if( !($ttable = $db->read_table( $line, $reverse )) ) {
+				if( !($table = $db->read_table( $line, '0' )) ) {
     	            parent::err("Nie można odczytać rozkładu jazdy!");
 					return FALSE;
         	    } else {
-            	    $smarty->assign( 'ttable', $ttable );
+            	    $smarty->assign( 'table', $table );
                 }
 
 				$smarty->assign( 'line', $line );
