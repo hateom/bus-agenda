@@ -37,6 +37,11 @@ class dbdriver
 		pg_close( $this->link );
 		$this->link = 0;
 	}
+	
+	function update_tt( $hour, $hour_id, $new_hour, $offset, $offset_id )
+	{
+		return TRUE;
+	}
 
     function save_route( $line, $desc, $route )
 	{
