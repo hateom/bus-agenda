@@ -202,7 +202,7 @@ class dbdriver
          	$sortOrder = 'DESC';
         }
 		
-        $sql = 'SELECT offset.id AS offset_id, przystanki.nazwa AS nazwa, przesuniecia.offset FROM przesuniecia LEFT JOIN trasy ON trasy.id = przesuniecia.trasy_id LEFT JOIN przystanki ON przystanki.id = trasy.przystanki_id WHERE trasy.linie_id = '. $line .' AND przesuniecia.powrotna = \''.$reverse.'\' ORDER BY numer_kolejny '. $sortOrder;
+        $sql = 'SELECT przesuniecia.id AS offset_id, przystanki.nazwa AS nazwa, przesuniecia.offset FROM przesuniecia LEFT JOIN trasy ON trasy.id = przesuniecia.trasy_id LEFT JOIN przystanki ON przystanki.id = trasy.przystanki_id WHERE trasy.linie_id = '. $line .' AND przesuniecia.powrotna = \''.$reverse.'\' ORDER BY numer_kolejny '. $sortOrder;
         $this->result = pg_query( $this->link, $sql );
 	
         if( !$this->result ) return FALSE;
