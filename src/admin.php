@@ -174,6 +174,18 @@
 					$smarty->assign( 'desc', "TODO" );
                     $smarty->display( 'manage_route.tpl' );
                 }
+			} else if( isset( $get['ett'] ) ) {
+				$line = $get['ett'];
+
+				if( !($ttable = $db->read_stable( $line, $reverse )) ) {
+    	            parent::err("Nie można odczytać rozkładu jazdy!");
+					return FALSE;
+        	    } else {
+            	    $smarty->assign( 'ttable', $ttable );
+                }
+
+				$smarty->assign( 'line', $line );
+				$smarty->display( 'edit_tt.tpl' );
             } else if( !($lines = read_lines( $db )) ) {
                 parent::err("Nie można odczytać lini!");
             } else {
