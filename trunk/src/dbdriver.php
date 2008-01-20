@@ -50,6 +50,7 @@ class dbdriver
             $this->result = pg_query( $this->link, $sql );
             if( !$this->result )
             {
+                echo $sql.' failed!';
                 pg_query( $this->link, "rollback" );
                 return FALSE;
             }
@@ -60,6 +61,7 @@ class dbdriver
             $this->result = pg_query( $this->link, $sql );
             if( !$this->result )
             {
+                echo $sql.' failed!';
                 pg_query( $this->link, "rollback" );
                 return FALSE;
             }
@@ -76,6 +78,7 @@ class dbdriver
             $this->result = pg_query( $this->link, $sql );
             if( !$this->result )
             {
+                echo $sql.' failed!';
                 pg_query( $this->link, "rollback" );
                 return FALSE;
             }
