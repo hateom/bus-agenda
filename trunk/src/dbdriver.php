@@ -68,13 +68,13 @@ class dbdriver
 	}
 	
 	function save_bs( $name, $street1, $street2 )
-	{/*
+	{
 		if( !$this->connect_db() ) return FALSE;
 
-		$sql = '';
+		$sql = 'INSERT INTO "przystanki"("nazwa", "ulica1_id", "ulica2_id") VALUES (\''.$name.'\', \''. $street1 .'\',\''. $street2.'\')';
         $this->result = pg_query( $this->link, $sql );
 	
-        if( !$this->result ) return FALSE;*/
+        if( !$this->result ) return FALSE;
 
         return TRUE;		
 	}
