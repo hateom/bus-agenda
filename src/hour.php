@@ -1,0 +1,1 @@
+<li><input type="text" name="<?=$_GET['n']?>" /></li>
