@@ -224,7 +224,7 @@ class dbdriver
         return TRUE;		
 	}
 	
-	function update_route( $line, $newline, $desc, $rroute )
+	function update_route( $line, $newline, $desc, $rroute, $lines_count )
 	{
 		if( !$this->connect_db() ) return FALSE;
         $this->result = pg_query( $this->link, "begin" );
@@ -255,16 +255,56 @@ class dbdriver
                 return FALSE;
              }
         }
-        for( $i=0; $i<count($rroute); $i++)
+        for( $i=0; $i<count($r_row); $i++)
         {
              $sql = 'UPDATE trasy SET "przystanki_id" = \''.$rroute[$i].'\' WHERE id = \''.$r_row[$i].'\'';
- $this->result = pg_query($this->link, $sql);
+             $this->result = pg_query($this->link, $sql);
              if(!$this->result)
              {
 	     	echo $sql.' failed ';
                 pg_query( $this->link, "rollback" );
                 return FALSE;
              }
+        }
+        // wstawienie nowych 
+        $count = count($r_row)
+        if($count != count($rroute))
+        {
+            for($i=$count;$i<count($route);$i++)
+            {
+                $sql = 'INSERT INTO "trasy"("linie_id", "przystanki_id", "numer_kolejny") VALUES (\''.$newline.'\', \''. $rroute[$i] .'\',\''. $i.'\')';
+                $res = pg_query( $this->link, $sql );
+                if (!$res) 
+                {
+                    $res = pg_query( $this->link, "rollback" );
+                    return FALSE;
+                }
+            }
+            //odszukanie nowych ID tras
+            $sql = 'SELECT id FROM trasy WHERE linie_id = '.$line.' ORDER BY numer_kolejny DESC LIMIT'.count($rroute) - $count';
+            $res = pg_query( $this->link, $sql );
+            $r_row = array();
+            while( $row = pg_fetch_assoc( $this->result)) {
+                $r_row[] = $row['id'];
+            }
+        //dodanie pustych offsetow
+            for($i=$count;$i<count($route);$i++)
+        {
+            $sql = 'INSERT INTO "przesuniecia"("offset", "trasy_id", "powrotna") VALUES (\'00:00\','.$r_row[$i].',\'0\'';
+            $this->result = pg_query( $this->link, $sql );
+        if(!$this->result)
+        {
+            $this->result = pg_query( $this->link, "rollback" );
+            return FALSE;
+        }
+            $sql = 'INSERT INTO "przesuniecia"("offset", "trasy_id", "powrotna") VALUES (\'00:00\','.$r_row[$i].',\'1\'';
+            $this->result = pg_query( $this->link, $sql );
+        if(!$this->result)
+        {
+            $this->result = pg_query( $this->link, "rollback" );
+            return FALSE;
+        }
+        }
         }
         $this->result = pg_query( $this->link, "commit" );
         if( !$this->result ) return FALSE;
