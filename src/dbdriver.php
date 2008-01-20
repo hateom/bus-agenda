@@ -142,13 +142,45 @@ class dbdriver
 	}
 	
 	function update_route( $line, $newline, $desc, $rroute )
-	{/*
+	{
 		if( !$this->connect_db() ) return FALSE;
-
-		$sql = '';
-        $this->result = pg_query( $this->link, $sql );
-	
-        if( !$this->result ) return FALSE;*/
+        $this->result = pg_query( $this->link, "begin" );
+        if( !$this->result ) return FALSE;
+        
+        $sql = 'SELECT id FROM trasy WHERE linie_id = '.$line.'ORDER BY numer_kolejny ASC';
+        $this->result = pg_query($this->link, $sql);
+        $r_row = array();
+        while( $row = $dbd->next_route()) {
+                $r_row[] = $row;
+        }
+        if(!$this->query)
+             {
+                pg_query( $this->link, "rollback" );
+                return FALSE;
+             }
+        
+        if($line != $newline)
+        {
+             $sql = 'UPDATE linie SET "numer" = \''.$newline.'\' WHERE numer = \''.$line.'\'';
+             $this->result = pg_query($this->link, $sql);
+             if(!$this->query)
+             {
+                pg_query( $this->link, "rollback" );
+                return FALSE;
+             }
+        }
+        for( $i=0; $i<count($rroute); $i++)
+        {
+             $sql = 'UPDATE trasy SET "przystanki_id" = \''.$rroute[$i].'\' WHERE id = \''.$r_row[i].'\'';
+             $this->result = pg_query($this->link, $sql);
+             if(!$this->query)
+             {
+                pg_query( $this->link, "rollback" );
+                return FALSE;
+             }
+        }
+        $this->result = pg_query( $this->link, "commit" );
+        if( !$this->result ) return FALSE;
 
         return TRUE;		
 	}
