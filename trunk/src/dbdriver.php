@@ -38,8 +38,51 @@ class dbdriver
 		$this->link = 0;
 	}
 	
-	function update_tt( $hour, $hour_id, $new_hour, $offset, $offset_id )
+	function update_tt( $line, $reversed, $hour, $hour_id, $new_hour, $offset, $offset_id )
 	{
+        if( !$this->connect_db() ) return FALSE;
+        $this->result = pg_query( $this->link, "begin" );
+        if( !$this->result ) return FALSE;
+        
+        for($i=0;$i<count($hour);$i++)
+        {
+            $sql = 'UPDATE odjazdy SET odjazdy.godzina = \''.$hour[$i].'\' WHERE odjazdy.id = '.$hour_id[i];
+            $this->result = pg_query( $this->link, $sql );
+            if( !$this->result )
+            {
+                pg_query( $this->link, "rollback" );
+                return FALSE;
+            }
+        }
+        foreach($new_hour as $nh)
+        {
+            $sql = 'INSERT INTO odjazdy("linie_id", "kierunek", "godzina") VALUES(\''.$line.'\',\''.$reversed.'\',\''.$hour.'\')';
+            $this->result = pg_query( $this->link, $sql );
+            if( !$this->result )
+            {
+                pg_query( $this->link, "rollback" );
+                return FALSE;
+            }
+        }
+        $this->result = pg_query( $this->link, "commit" );
+        if(!$this->result) return FALSE;
+        
+        $this->result = pg_query( $this->link, "begin" );
+        if( !$this->result ) return FALSE;
+        
+        for($i=0;$i<count($offset);$i++)
+        {
+            $sql = 'UPDATE przesuniecia SET przesuniecia.offset = \''.$offset[$i].'\' WHERE przesuniecia.id = '.$offset_id[i];
+            $this->result = pg_query( $this->link, $sql );
+            if( !$this->result )
+            {
+                pg_query( $this->link, "rollback" );
+                return FALSE;
+            }
+        }
+        
+        $this->result = pg_query( $this->link, "commit" );
+        if(!$this->result) return FALSE;
 		return TRUE;
 	}
 
