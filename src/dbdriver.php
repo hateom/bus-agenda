@@ -46,7 +46,7 @@ class dbdriver
         
         for($i=0;$i<count($hour);$i++)
         {
-            $sql = 'UPDATE odjazdy SET odjazdy.godzina = \''.$hour[$i].'\' WHERE odjazdy.id = '.$hour_id[i];
+            $sql = 'UPDATE odjazdy SET odjazdy.godzina = \''.$hour[$i].'\' WHERE odjazdy.id = '.$hour_id[$i];
             $this->result = pg_query( $this->link, $sql );
             if( !$this->result )
             {
@@ -57,7 +57,7 @@ class dbdriver
         }
         foreach($new_hour as $nh)
         {
-            $sql = 'INSERT INTO odjazdy("linie_id", "kierunek", "godzina") VALUES(\''.$line.'\',\''.$reversed.'\',\''.$hour.'\')';
+            $sql = 'INSERT INTO odjazdy("linie_id", "kierunek", "godzina") VALUES(\''.$line.'\',\''.$reversed.'\',\''.$nh.'\')';
             $this->result = pg_query( $this->link, $sql );
             if( !$this->result )
             {
@@ -74,7 +74,7 @@ class dbdriver
         
         for($i=0;$i<count($offset);$i++)
         {
-            $sql = 'UPDATE przesuniecia SET przesuniecia.offset = \''.$offset[$i].'\' WHERE przesuniecia.id = '.$offset_id[i];
+            $sql = 'UPDATE przesuniecia SET przesuniecia.offset = \''.$offset[$i].'\' WHERE przesuniecia.id = '.$offset_id[$i];
             $this->result = pg_query( $this->link, $sql );
             if( !$this->result )
             {
