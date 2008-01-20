@@ -230,7 +230,9 @@
                     $nl=$_GET['add'];
                     if( $nl === "" ) {
                         $error = "Nazwa nie może być pusta!";
-                    } else {
+                    } else if( $db->line_exists( $nl ) ) {
+						$error = "Taka linia już istnieje!";
+					} else {
 						$smarty->assign( 'bs', $bs );
 						$smarty->assign( 'line', $nl );
 	                    $smarty->display( 'add_route.tpl' );
