@@ -305,7 +305,7 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT godzina FROM odjazdy WHERE linie_id = '.$line.' AND kierunek = \''.$reverse.'\'';
+        $sql    = 'SELECT godzina.id, godzina FROM odjazdy WHERE linie_id = '.$line.' AND kierunek = \''.$reverse.'\'';
 
         $this->result = pg_query( $this->link, $sql );
     
