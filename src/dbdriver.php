@@ -188,7 +188,8 @@ class dbdriver
 
         return TRUE;		
 	}
-    function read_offset($line, $reverse)
+    
+	function read_offset($line, $reverse)
     {
         if( !$this->connect_db() ) return FALSE;
         $sortOrder;
@@ -204,9 +205,16 @@ class dbdriver
         $this->result = pg_query( $this->link, $sql );
 	
         if( !$this->result ) return FALSE;
-
-        return TRUE;
+		
+		$offset = array();
+		while( $row = pg_fetch_assoc( $this->result ) )
+		{
+			$offset[] = $row;
+		}
+		
+        return $offset;
     }
+	
     function read_route($line, $reverse)
 	{
 		if( !$this->connect_db() ) return FALSE;
@@ -297,16 +305,20 @@ class dbdriver
         if( !$this->connect_db() ) return FALSE;
 
         $sql    = 'SELECT godzina FROM odjazdy WHERE linie_id = '.$line.' AND kierunek = \''.$reverse.'\'';
+
         $this->result = pg_query( $this->link, $sql );
     
         if( !$this->result ) return FALSE;
 		
-		$out = array();
-		while( $row = pg_fetch_assoc( $this->result ) ) {
-			$out[] = $row;	
-		}
+		return TRUE;
+    }
+	
+	function next_table()
+    {
+        if( !$this->result ) return FALSE;
 
-        return $out;
+        $row = pg_fetch_assoc( $this->result );
+        return $row;
     }
 
     function read_ttable( $line, $bs, $reverse )
