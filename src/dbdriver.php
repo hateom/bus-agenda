@@ -38,6 +38,21 @@ class dbdriver
 		$this->link = 0;
 	}
 	
+	function remove_street( $street_id )
+	{
+		return TRUE;
+	}
+	
+	function remove_bs( $bs_id )
+	{
+		return TRUE;
+	}
+	
+	function remove_route( $route_id )
+	{
+		return TRUE;
+	}
+	
 	function update_tt( $line, $reversed, $hour, $hour_id, $new_hour, $offset, $offset_id )
 	{
         if( !$this->connect_db() ) return FALSE;
