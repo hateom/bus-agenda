@@ -74,6 +74,21 @@ body {
     font-size: 0.5em;
 }
 
+.error strong {
+	display: block;
+	font_size: 2.5em;
+}
+
+.confirm {
+	display: inline;
+}
+
+.confirm input {
+	width: 200px;
+	height: 25px;
+	font-size: 0.5em;
+}
+
 .notify {
     border: 3px solid #000;
     background-color: #afa;
@@ -268,4 +283,8 @@ body {
 
 .time {
 	font-family: "Bookman Old Style", Georgia, "Palatino Linotype";
+}
+
+.delete {
+	display: inline;
 }

@@ -80,7 +80,48 @@
             $smarty->display( 'intro.tpl' );
             $error = "Nie masz praw do oglądania tej strony!";
         }
-    } else {
+	} else if( isset( $_GET['delete'] ) ){
+		$delete = $_GET['delete'];
+		if( $delete === "street" ) {
+			$smarty->assign( 'msg', 'Czy na pewno chcesz usunąć ulicę '.$_GET['street'].'?' );
+			$smarty->assign( 'action', 'street' );
+			$smarty->assign( 'id', $_GET['street'] );
+		} else if( $delete === "bs" ) {
+			$smarty->assign( 'msg', 'Czy na pewno chcesz usunąć przystanek '.$_GET['bs'].'?' );		
+			$smarty->assign( 'action', 'bs' );
+			$smarty->assign( 'id', $_GET['bs'] );
+		} else if( $delete === "route" ) {
+			$smarty->assign( 'msg', 'Czy na pewno chcesz usunąć trasę '.$_GET['route'].'?' );		
+			$smarty->assign( 'action', 'route' );
+			$smarty->assign( 'id', $_GET['route'] );
+		}
+		$smarty->display( 'delete_confirm.tpl' );
+    } else if( isset( $_POST['d'] ) ) {
+		$d = $_POST['d'];
+		$id = $_POST['id'];
+		if( $d === "street" ) {
+			if( !$db->remove_street( $id ) )
+			{
+				$error = "Nie można usunąć ulicy ".$id."!";
+			} else {
+				$notify = "Ulica została usunięta.";
+			}
+		} else if( $d === "bs" ) {
+			if(!$db->remove_bs( $id ) )
+			{
+				$error = "Nie można usunąć przystanku ".$db->get_bs_name($id)."!";
+			} else {
+				$notify = "Usunięto przystanek ".$db->get_bs_name($id).".";
+			}
+		} else if( $d === "route" ) {
+			if( !$db->remove_route( $id ) )
+			{
+				$error = "Nie można usunąć linii " . $id . "!";
+			} else {
+				$notify = "Linia ".$id." została usunięta.";
+			}
+		}
+	} else {
         $smarty->display( 'intro.tpl' );
     }
     

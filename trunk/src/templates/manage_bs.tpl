@@ -8,7 +8,7 @@
 
     <ul>
 {foreach from=$bs item=foo}
-        <li>{$foo.nazwa} <em><a href="?a=bs&e={$foo.id}">zmień</a><!--, <a href="?a=bs&d={$foo.id}">usuń</a>--></em></li>
+        <li>{$foo.nazwa} <em><a href="?a=bs&amp;e={$foo.id}">zmień</a>, <a href="?delete=bs&amp;bs={$foo.id}">usuń</a></em></li>
 {/foreach}
     </ul>
 </div>
