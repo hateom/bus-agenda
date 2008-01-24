@@ -38,18 +38,101 @@ class dbdriver
 		$this->link = 0;
 	}
 	
-	function remove_street( $street_id )
+        function checkBsDeletable($bs_id)
+        {
+            if( !$this->connect_db() ) return FALSE;
+		$sql = 'SELECT DISTINCT(linie_id) FROM trasy WHERE przystanki_id = '.$bs_id.' ORDER BY linie_id ASC';
+		$this->result = pg_query( $this->link, $sql );
+                if( !$this->result )
+                {
+                    return FALSE;
+                }
+                $r_row = array();
+                while( $row = pg_fetch_assoc( $this->result))
+                {
+                    $r_row[] = $row['linie_id'];
+                }
+                if (count($r_row)>0)
+                {
+                    echo 'Przystanek jest ju¿ zwi±zany z trasami:!<br>';
+                    foreach($r_row as $row)
+                    {
+                        echo $row.'<br>';
+                    }
+                    return FALSE;
+                }
+		return TRUE;
+        }
+        
+        function remove_street( $street_id )
 	{
+                 if( !$this->connect_db() ) return FALSE;
+		$sql = 'SELECT nazwa FROM przystanki WHERE ulica1_id = '.$street_id.' OR ulica2_id ='.$street_id.' ORDER BY nazwa ASC';
+		$this->result = pg_query( $this->link, $sql );
+                if( !$this->result )
+                {
+                    return FALSE;
+                }
+                $r_row = array();
+                while( $row = pg_fetch_assoc( $this->result))
+                {
+                    $r_row[] = $row['nazwa'];
+                }
+                if (count($r_row)>0)
+                {
+                    echo 'Ulica jest ju¿ zwi±zana z przystankami:!<br>';
+                    foreach($r_row as $row)
+                    {
+                        echo $row.'<br>';
+                    }
+                    return FALSE;
+                }
+                $sql = 'DELETE FROM ulice_d WHERE id = '.$street_id;
+                $this->result = pg_query( $this->link, $sql );
+                if( !$this->result )
+                {
+                    return FALSE;
+                }
 		return TRUE;
 	}
-	
+        
 	function remove_bs( $bs_id )
 	{
+		if( !$this->checkBsDeletable($bs_id) )
+                {
+                    return FALSE;
+                }
+                #if( !$this->connect_db() ) return FALSE;
+                $sql = 'DELETE FROM przystanki WHERE id = '.$bs_id;
+                $this->result = pg_query( $this->link, $sql );
+                if( !$this->result )
+                {
+                    return FALSE;
+                }
 		return TRUE;
 	}
 	
+        function remove_departure( $departure_id )
+        {
+                if( !$this->connect_db() ) return FALSE;
+                $sql = 'DELETE FROM odjazdy WHERE numer = '.$departure_id;
+                $this->result = pg_query( $this->link, $sql );
+                if( !$this->result )
+                {
+                    return FALSE;
+                }
+		return TRUE;
+        }
+        
 	function remove_route( $route_id )
 	{
+                if( !$this->connect_db() ) return FALSE;
+                $sql = 'DELETE FROM linie WHERE numer = '.$route_id;
+                $this->result = pg_query( $this->link, $sql );
+                if( !$this->result )
+                {
+                    return FALSE;
+                }
 		return TRUE;
 	}
 	
