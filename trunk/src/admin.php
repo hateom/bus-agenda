@@ -90,6 +90,10 @@
                 } else if( $db->bs_exists( $nbs ) ) {
 					$error = "Przystanek o takiej nazwie już istnieje!";
 				} else {
+				if( !($str = read_streets( $db ))) {
+					parent::err("Nie można odczytać ulic!");
+					return FALSE;
+				}
                     $smarty->assign( 'bs', $nbs );
 					$smarty->assign( 'streets', $str );
 					$smarty->display( 'add_bs.tpl' );
