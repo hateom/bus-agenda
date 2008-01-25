@@ -54,11 +54,12 @@ class dbdriver
                 }
                 if (count($r_row)>0)
                 {
-                    echo 'Przystanek jest ju¿ zwi±zany z trasami:!<br>';
+                    echo '<div class="content"><p>Przystanek jest juz zwiazany z trasami:</p><ul>';
                     foreach($r_row as $row)
                     {
-                        echo $row.'<br>';
+                        echo '<li>'.$row.'</li>';
                     }
+					echo '</ul></div>';
                     return FALSE;
                 }
 		return TRUE;
@@ -80,11 +81,12 @@ class dbdriver
                 }
                 if (count($r_row)>0)
                 {
-                    echo 'Ulica jest ju¿ zwi±zana z przystankami:!<br>';
+                    echo '<div class="content"><p>Ulica jest juz zwiazana z przystankami:</p><ul>';
                     foreach($r_row as $row)
                     {
-                        echo $row.'<br>';
+                        echo '<li>'.$row.'</li>';
                     }
+					echo '</ul></div>';
                     return FALSE;
                 }
                 $sql = 'DELETE FROM ulice_d WHERE id = '.$street_id;
