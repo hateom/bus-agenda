@@ -1,0 +1,8 @@
+\section{Rozwijanie i modyfikowanie aplikacji}
+Wykonana przez nas aplikacja może być dalej rozwijana, w szczególności można dodać opcję wyszukiwania połączeń pomiędzy dwoma przystankami. Planowaliśmy zaimplementować
+taką funkcjonalność, ale jest to zadanie dość złożone i wymagałoby dużo przetwarzania danych po stronie klienta. Można również zastanowić się nad innym 
+definiowaniem przystanków i tras, aby umożliwić dowolne modyfikacje trasy (w tej chwili są one utrudnione, ze względu na koncepcję przesunięć ściśle związanych z kolejnością przystanku na trasie).
+Podejście takie zdecydowanie zwiększyłoby elastyczność programu, ale również zwiększyłaby się ilość operacji jakie musiałaby wykonać baza danych przy wyszukiwaniu,
+ pokazywaniu przystanku (rozkładu czy trasy). 
+
+Dodatkowo należałoby uważnie sprawdzić kod strony WWW aby zabezpieczyć go przed atakami (głównie SQL Injection). W chwili obecnej są one możliwe gdyż nie jest wykonywane escapowanie znaków.
