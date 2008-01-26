@@ -1,1 +1,3 @@
 \section{Analiza zależności funkcyjnych i normalizacja tabel (dekompozycja do 3NF, BCNF, 4NF, 5NF)}
+W bazie, w pierwotnym projekcie pojawiły się zdublowane dane (tabele trasy i przesunięcia). Powodowało to znaczne komplikacje przy wprowadzaniu danych do bazy 
+(z poziomu programu do zarządzania bazą). Problem został wyeliminowany przez usunięcie z tabeli ``przesuniecia'' kolumn: numer_linii, id_przystanki, numer_kolejny. Kolumny te powtarzały się właśnie w tabeli ``trasy'' i na ich miejsce w tabeli ``przesuniecia'' jest teraz kolumna ``trasy_id'' jednoznacznie określająca te dane. Pozostałe tabele nie wymagały normalizacji.
