@@ -52,11 +52,22 @@ CREATE TABLE trasy (
 );
 
 CREATE VIEW timetable_view AS
-    SELECT odjazdy.linie_id AS linia_numer, trasy.numer_kolejny, przystanki.id AS przystanek_id, przystanki.nazwa AS przystanek, (przesuniecia."offset" + odjazdy.godzina) AS odj, odjazdy.id AS odj_id, odjazdy.kierunek FROM (((przesuniecia JOIN trasy ON ((przesuniecia.trasy_id = trasy.id))) JOIN przystanki ON ((trasy.przystanki_id = przystanki.id))) JOIN odjazdy ON ((odjazdy.linie_id = trasy.linie_id))) WHERE (odjazdy.kierunek = przesuniecia.powrotna) ORDER BY odjazdy.linie_id, trasy.numer_kolejny;
+    SELECT odjazdy.linie_id AS linia_numer, trasy.numer_kolejny, 
+    przystanki.id AS przystanek_id, przystanki.nazwa AS przystanek, 
+    (przesuniecia."offset" + odjazdy.godzina) AS odj, odjazdy.id AS odj_id, 
+    odjazdy.kierunek FROM 
+    (((przesuniecia JOIN trasy ON ((przesuniecia.trasy_id = trasy.id))) 
+        JOIN przystanki ON ((trasy.przystanki_id = przystanki.id))) 
+        JOIN odjazdy ON ((odjazdy.linie_id = trasy.linie_id))) 
+    WHERE (odjazdy.kierunek = przesuniecia.powrotna) 
+    ORDER BY odjazdy.linie_id, trasy.numer_kolejny;
 
 
 CREATE VIEW trasy_view AS
-    SELECT trasy.przystanki_id, linie.numer, trasy.numer_kolejny, (SELECT przystanki.nazwa FROM przystanki WHERE (przystanki.id = trasy.przystanki_id)) AS nazwa FROM (trasy JOIN linie ON ((linie.numer = trasy.linie_id)));
+    SELECT trasy.przystanki_id, linie.numer, trasy.numer_kolejny, 
+    (SELECT przystanki.nazwa FROM przystanki 
+    WHERE (przystanki.id = trasy.przystanki_id)) AS nazwa 
+    FROM (trasy JOIN linie ON ((linie.numer = trasy.linie_id)));
 
 
 ALTER TABLE ONLY linie
@@ -84,22 +95,28 @@ ALTER TABLE ONLY trasy
     ADD CONSTRAINT trasy_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY odjazdy
-    ADD CONSTRAINT odjazdy_linie_id_fkey FOREIGN KEY (linie_id) REFERENCES linie(numer) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT odjazdy_linie_id_fkey FOREIGN KEY (linie_id) 
+    REFERENCES linie(numer) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY przesuniecia
-    ADD CONSTRAINT przesuniecia_trasy_id_fkey FOREIGN KEY (trasy_id) REFERENCES trasy(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT przesuniecia_trasy_id_fkey FOREIGN KEY (trasy_id) 
+    REFERENCES trasy(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY przystanki
-    ADD CONSTRAINT przystanki_fk_id_ulica1_fkey FOREIGN KEY (ulica2_id) REFERENCES ulice_d(id);
+    ADD CONSTRAINT przystanki_fk_id_ulica1_fkey FOREIGN KEY (ulica2_id) 
+    REFERENCES ulice_d(id);
 
 ALTER TABLE ONLY przystanki
-    ADD CONSTRAINT przystanki_fk_id_ulica2_fkey FOREIGN KEY (ulica1_id) REFERENCES ulice_d(id);
+    ADD CONSTRAINT przystanki_fk_id_ulica2_fkey FOREIGN KEY (ulica1_id) 
+    REFERENCES ulice_d(id);
 
 ALTER TABLE ONLY trasy
-    ADD CONSTRAINT trasy_linie_id_fkey FOREIGN KEY (linie_id) REFERENCES linie(numer) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT trasy_linie_id_fkey FOREIGN KEY (linie_id) 
+    REFERENCES linie(numer) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY trasy
-    ADD CONSTRAINT trasy_przystanki_id_fkey FOREIGN KEY (przystanki_id) REFERENCES przystanki(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+    ADD CONSTRAINT trasy_przystanki_id_fkey FOREIGN KEY (przystanki_id) 
+    REFERENCES przystanki(id) ON UPDATE CASCADE ON DELETE RESTRICT;
 \end{verbatim}
 
 
