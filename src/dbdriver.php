@@ -54,11 +54,7 @@ class dbdriver
                 }
                 if (count($r_row)>0)
                 {
-<<<<<<< .mine
-                    echo 'Przystanek jest już związany z trasami:<br>';
-=======
                     echo '<div class="content"><p>Przystanek jest juz zwiazany z trasami:</p><ul>';
->>>>>>> .r159
                     foreach($r_row as $row)
                     {
                         echo '<li>'.$row.'</li>';
@@ -85,11 +81,7 @@ class dbdriver
                 }
                 if (count($r_row)>0)
                 {
-<<<<<<< .mine
-                     echo 'Ulica jest już związana z przystankami:<br>';
-=======
                     echo '<div class="content"><p>Ulica jest juz zwiazana z przystankami:</p><ul>';
->>>>>>> .r159
                     foreach($r_row as $row)
                     {
                         echo '<li>'.$row.'</li>';
