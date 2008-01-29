@@ -288,3 +288,21 @@ body {
 .delete {
 	display: inline;
 }
+
+.send_btn {
+	display: block;
+	text-align: center;
+	border: 3px solid #eee;
+	padding: 15px;
+}
+
+.send_btn input {
+	font-size: 1.25em;
+	width: 200px;
+}
+
+#add_hour {
+	display: block;
+	margin: auto;
+	width: 250px;
+}

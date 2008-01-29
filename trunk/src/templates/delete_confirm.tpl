@@ -5,8 +5,9 @@
         <form action="./" method="get" class="confirm">
         	<input type="hidden" name="discard" value="" />
         	<input type="submit" value="Nie" />
+            <input type="hidden" name="a" value="{$redir}" />
         </form>
-        <form action="./" method="post" class="confirm">
+        <form action="./?a={$redir}" method="post" class="confirm">
         	<input type="hidden" name="d" value="{$action}" />
         	<input type="hidden" name="id" value="{$id}" />
         	<input type="submit" value="Tak" />
