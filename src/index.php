@@ -55,48 +55,28 @@
     $smarty->display( 'head.tpl' );
     $smarty->display( 'panel.tpl' );
 
-    /* page selected */
-     if( isset( $_GET['i'] ) || isset( $_GET['l'] ) || isset( $_GET['b'] ) ) {
-        $brows = new browser();
-		$brows->execute( $_GET, $_POST, $db, $smarty );
-    	if( $brows->is_error() ) {
-			$error = $brows->get_error();
-		}
-		if( $brows->is_notify() ) {
-			$notify = $brows->get_notify();
-		}
-    } else if( isset( $_GET['a'] )) { /* administrator mode*/
-        if( isset( $_SESSION['loggedin'] ) && $_SESSION['loggedin'] == 1 ) {
-            $adm = new admin();
-			$adm->execute( $_GET, $_POST, $db, $smarty ); 
-	    	if( $adm->is_error() ) {
-				$error = $adm->get_error();
-			}			
-			if( $adm->is_notify() ) {
-				$notify = $adm->get_notify();
-			}
-        } else {
-            /* no admin option selected - show intr0 */
-            $smarty->display( 'intro.tpl' );
-            $error = "Nie masz praw do oglądania tej strony!";
-        }
-	} else if( isset( $_GET['delete'] ) ){
+	if( isset( $_GET['delete'] ) ){
+		$smarty_assigned = TRUE;
 		$delete = $_GET['delete'];
 		if( $delete === "street" ) {
 			$smarty->assign( 'msg', 'Czy na pewno chcesz usunąć ulicę '.$_GET['street'].'?' );
 			$smarty->assign( 'action', 'street' );
+			$smarty->assign( 'redir', 'streets' );
 			$smarty->assign( 'id', $_GET['street'] );
 		} else if( $delete === "bs" ) {
 			$smarty->assign( 'msg', 'Czy na pewno chcesz usunąć przystanek '.$_GET['bs'].'?' );		
 			$smarty->assign( 'action', 'bs' );
+			$smarty->assign( 'redir', 'bs' );
 			$smarty->assign( 'id', $_GET['bs'] );
 		} else if( $delete === "route" ) {
 			$smarty->assign( 'msg', 'Czy na pewno chcesz usunąć trasę '.$_GET['route'].'?' );		
 			$smarty->assign( 'action', 'route' );
+			$smarty->assign( 'redir', 'line' );
 			$smarty->assign( 'id', $_GET['route'] );
 		}
 		$smarty->display( 'delete_confirm.tpl' );
     } else if( isset( $_POST['d'] ) ) {
+		$smarty_assigned = TRUE;
 		$d = $_POST['d'];
 		$id = $_POST['id'];
 		if( $d === "street" ) {
@@ -121,7 +101,38 @@
 				$notify = "Linia ".$id." została usunięta.";
 			}
 		}
-	} else {
+	}
+
+    /* page selected */
+     if( isset( $_GET['i'] ) || isset( $_GET['l'] ) || isset( $_GET['b'] ) ) {
+	 	$smarty_assigned = TRUE;
+        $brows = new browser();
+		$brows->execute( $_GET, $_POST, $db, $smarty );
+    	if( $brows->is_error() ) {
+			$error = $brows->get_error();
+		}
+		if( $brows->is_notify() ) {
+			$notify = $brows->get_notify();
+		}
+    } else if( isset( $_GET['a'] )) { /* administrator mode*/
+		$smarty_assigned = TRUE;
+        if( isset( $_SESSION['loggedin'] ) && $_SESSION['loggedin'] == 1 ) {
+            $adm = new admin();
+			$adm->execute( $_GET, $_POST, $db, $smarty ); 
+	    	if( $adm->is_error() ) {
+				$error = $adm->get_error();
+			}			
+			if( $adm->is_notify() ) {
+				$notify = $adm->get_notify();
+			}
+        } else {
+            /* no admin option selected - show intr0 */
+            $smarty->display( 'intro.tpl' );
+            $error = "Nie masz praw do oglądania tej strony!";
+        }
+	}
+
+	if( !isset( $smarty_assigned )) {
         $smarty->display( 'intro.tpl' );
     }
     
