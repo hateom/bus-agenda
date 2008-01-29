@@ -59,7 +59,7 @@
 		$smarty_assigned = TRUE;
 		$delete = $_GET['delete'];
 		if( $delete === "street" ) {
-			$smarty->assign( 'msg', 'Czy na pewno chcesz usunąć ulicę '.$db->get_street_name($_GET['street']).'?' );
+			$smarty->assign( 'msg', 'Czy na pewno chcesz usunąć ulicę "'.$db->get_street_name($_GET['street']).'"?' );
 			$smarty->assign( 'action', 'street' );
 			$smarty->assign( 'redir', 'streets' );
 			$smarty->assign( 'id', $_GET['street'] );
