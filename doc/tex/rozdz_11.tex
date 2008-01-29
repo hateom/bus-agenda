@@ -208,6 +208,9 @@ ALTER TABLE ONLY przesuniecia
 ALTER TABLE ONLY przystanki
     ADD CONSTRAINT przystanki_nazwa_key UNIQUE (nazwa);
 
+ALTER TABLE ONLY ulice_d
+    ADD CONSTRAINT ulice_d_nazwa_key UNIQUE (nazwa);
+
 ALTER TABLE ONLY przystanki
     ADD CONSTRAINT przystanki_pkey PRIMARY KEY (id);
 
