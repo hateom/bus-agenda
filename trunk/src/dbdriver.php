@@ -426,7 +426,7 @@ class dbdriver
     {
              if( !$this->connect_db() ) return FALSE;
 
-        $sql = 'SELECT nazwa FROM "public"."linie" WHERE id ='. $street_id;
+        $sql = 'SELECT opis FROM "public"."linie" WHERE numer ='. $line_number;
         $this->result = pg_query( $this->link, $sql );
 		
         if( !$this->result ) return FALSE;
