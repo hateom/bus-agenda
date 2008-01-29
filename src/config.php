@@ -6,6 +6,6 @@
     $db_pass  = 'dupa'; // password
     $db_name  = 'busagenda'; // database name
 
-    $root_pwd = '9743a66f914cc249efca164485a19c5c'; // administrator password
+    $root_pwd = 'e6f03438d974f37d238d6e4645ff34cd'; // administrator password
 
 ?>
