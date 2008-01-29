@@ -206,7 +206,7 @@
                     $smarty->assign( 'route', $route );
                     $smarty->assign( 'line', $line );
 					$smarty->assign( 'bs', $bs );
-					$smarty->assign( 'desc', "TODO" );
+					$smarty->assign( 'desc', $route['opis'] );
 					//$smarty->assign( 'count', count($route) );
                     $smarty->display( 'manage_route.tpl' );
                 }
