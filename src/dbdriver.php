@@ -580,7 +580,7 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT nazwa FROM "public"."ulice_d" WHERE id =' $street_id;
+        $sql    = 'SELECT nazwa FROM "public"."ulice_d" WHERE id ='. $street_id;
         $this->result = pg_query( $this->link, $sql );
 		
         if( !$this->result ) return FALSE;
