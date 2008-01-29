@@ -575,7 +575,18 @@ class dbdriver
         $row = pg_fetch_assoc( $this->result );
         return $row;
     }
+    
+    function read_street_name($street_id)
+    {
+        if( !$this->connect_db() ) return FALSE;
 
+        $sql    = 'SELECT nazwa FROM "public"."ulice_d" WHERE id =' $street_id;
+        $this->result = pg_query( $this->link, $sql );
+		
+        if( !$this->result ) return FALSE;
+
+        return TRUE;
+    }
     function read_lines()
     {
 		if( !$this->connect_db() ) return FALSE;
