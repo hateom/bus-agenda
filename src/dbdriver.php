@@ -584,8 +584,9 @@ class dbdriver
         $this->result = pg_query( $this->link, $sql );
 		
         if( !$this->result ) return FALSE;
-
-        return TRUE;
+		
+		$row = pg_fetch_assoc( $this->result );
+        return $row['nazwa'];
     }
     function read_lines()
     {
