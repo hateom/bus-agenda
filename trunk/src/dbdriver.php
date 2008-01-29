@@ -576,7 +576,7 @@ class dbdriver
         return $row;
     }
     
-    function read_street_name($street_id)
+    function get_street_name($street_id)
     {
         if( !$this->connect_db() ) return FALSE;
 
