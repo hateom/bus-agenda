@@ -432,7 +432,7 @@ class dbdriver
         if( !$this->result ) return FALSE;
 		
 		$row = pg_fetch_assoc( $this->result );
-        return $row['nazwa'];   
+        return $row['opis'];   
     }
 	function read_offset($line, $reverse)
     {
