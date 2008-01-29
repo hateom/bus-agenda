@@ -422,7 +422,18 @@ class dbdriver
 
         return TRUE;		
 	}
-    
+    function get_line_desc( $line_number ) 
+    {
+             if( !$this->connect_db() ) return FALSE;
+
+        $sql = 'SELECT nazwa FROM "public"."linie" WHERE id ='. $street_id;
+        $this->result = pg_query( $this->link, $sql );
+		
+        if( !$this->result ) return FALSE;
+		
+		$row = pg_fetch_assoc( $this->result );
+        return $row['nazwa'];   
+    }
 	function read_offset($line, $reverse)
     {
         if( !$this->connect_db() ) return FALSE;
@@ -580,7 +591,7 @@ class dbdriver
     {
         if( !$this->connect_db() ) return FALSE;
 
-        $sql    = 'SELECT nazwa FROM "public"."ulice_d" WHERE id ='. $street_id;
+        $sql = 'SELECT nazwa FROM "public"."ulice_d" WHERE id ='. $street_id;
         $this->result = pg_query( $this->link, $sql );
 		
         if( !$this->result ) return FALSE;
